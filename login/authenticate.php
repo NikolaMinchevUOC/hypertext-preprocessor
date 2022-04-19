@@ -17,7 +17,8 @@
 
         if (mysqli_num_rows($result) == 1) {
             // Redireccionamos al usuario al Dashboard
-            header("Location: panel/dashboard.php");
+            $_SESSION['email'] = $email;
+            header("Location: ../panel/dashboard.php");
         } else {
             // El correo electrónico o la contraseña es incorrecto
             header("Location: login.php?error=True");

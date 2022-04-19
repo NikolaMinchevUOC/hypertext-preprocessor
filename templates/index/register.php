@@ -3,7 +3,7 @@
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>UOC Alumni · Iniciar Sesión</title>
+      <title>UOC Alumni · Registrar Alumno</title>
 
       <!-- Bootstrap core CSS -->
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -18,29 +18,40 @@
   </head>
     <body class="text-center">
       <main class="form-signin">
-        <form method="POST" action="authenticate.php">
+        <form method="POST" action="registration.php">
           <img class="mb-4" src="https://www.uoc.edu/portal/system/modules/edu.uoc.presentations/resources/img/branding/logo-uoc-default.png" alt="" width="72" height="57">
-          <h1 class="h3 mb-3 fw-normal">Iniciar Sesión</h1>
-
-          <div class="form-floating">
-            <input type="email" class="form-control" name="email" id="email" placeholder="usuario@uoc.edu">
+          <h1 class="h3 mb-3 fw-normal">Registrar Alumno</h1>
+          <div class="form-floating mb-2">
+            <input type="text" class="form-control" name="name" id="name" placeholder="Nombre" required>
+            <label for="floatingInput">Nombre</label>
+          </div>
+          <div class="form-floating mb-2">
+            <input type="text" class="form-control" name="apellidos" id="apellidos" placeholder="Apellidos" required>
+            <label for="floatingInput">Apellidos</label>
+          </div>
+          <div class="form-floating mb-2">
+            <input type="text" class="form-control" name="nif" id="nif" placeholder="NIF" required>
+            <label for="floatingInput">NIF</label>
+          </div>
+          <div class="form-floating mb-2">
+            <input type="tel" class="form-control" name="telefono" id="telefono" placeholder="Teléfono" required>
+            <label for="floatingInput">Teléfono</label>
+          </div>
+          <div class="form-floating mb-2">
+            <input type="text" class="form-control" name="username" id="username" placeholder="Nick" required>
+            <label for="floatingInput">Nick</label>
+          </div>
+          <div class="form-floating mb-2">
+            <input type="email" class="form-control" name="email" id="email" placeholder="usuario@uoc.edu" required>
             <label for="floatingInput">Correo electrónico</label>
           </div>
           <div class="form-floating">
-            <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña">
+            <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" required>
             <label for="floatingPassword">Contraseña</label>
           </div>
-
-          <button class="w-100 btn btn-lg btn-primary" type="submit">Acceder</button>
+          <button class="w-100 btn btn-lg btn-primary" type="submit" name="register">Enviar</button>
           <hr>
-          <a href="register.php" style="text-decoration: none;"><p>¿Aún no tienes una cuenta?</p></a>
-          <?php 
-              if ($_GET['error']){
-                echo "<hr><div class='alert alert-danger' role='alert'>
-                El usuario o la contraseña es incorrecto.
-              </div>";
-              } 
-          ?>
+          <a href="login.php" style="text-decoration: none;"><p>¿Quieres iniciar sesión?</p></a>
           <p class="mt-5 mb-3 text-muted">&copy; UOC</p>
         </form>
       </main>
