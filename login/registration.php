@@ -67,4 +67,3 @@
         printf("<hr><center><a href='register.php'>Volver a la página de registro</a></center>");
       }
     }
-?> 
