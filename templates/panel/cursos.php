@@ -1,6 +1,6 @@
 <?php 
 
-    session_start();  
+     
     
     define('_UOC', 1);  
     require('../db_connection.php');
