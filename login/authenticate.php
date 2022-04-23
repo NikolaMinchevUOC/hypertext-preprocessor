@@ -11,6 +11,7 @@
 
         $password = stripslashes($_REQUEST['password']);
         $password = mysqli_real_escape_string($conn, $password);
+        $password = md5($password);
 
         $queryStudent = "SELECT * FROM `students` WHERE email='$email' AND pass='$password'";
         $resultUser = mysqli_query($conn, $queryStudent);
