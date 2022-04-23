@@ -116,7 +116,7 @@
                            <td>illustrative</td>
                            <td>rich</td>
                            <td>data</td>
-                        </tr>
+                     </tr>
                         <tr>
                            <td>1,015</td>
                            <td>random</td>
