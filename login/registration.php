@@ -21,7 +21,6 @@
       $username = mysqli_real_escape_string($conn, stripslashes($_REQUEST['username']));
       $email = mysqli_real_escape_string($conn, stripslashes($_REQUEST['email']));
       $password = mysqli_real_escape_string($conn, stripslashes($_REQUEST['password']));
-      $password = md5($password);
 
       if (empty($nombre)){array_push($error, "Nombre es un campo obligatorio");}
       if (empty($apellidos)){array_push($error, "Apellidos es un campo obligatorio");}
@@ -48,15 +47,15 @@
 
       // Si no hay ningún error
       if (count($error) == 0) {
-       
+        $password = md5($password);
 
-        $query = "INSERT INTO `students`(`username`, `pass`, `email`, `name`, `surname`, `telephone`, `nif`, `date_registered`) VALUES('$username', '$password', '$email', '$nombre', '$apellidos', '$telefono', '$nif', now())";
+        $query = "INSERT INTO `students`(`username`, `pass`, `email`, `name`, `surname`, `telephone`, `nif`, `date_registered`) VALUES('$username', '$password', '$email', '$nombre', '$apellidos', '$telefono', '$nif', '2022-04-18 00:00:00')";
         $result = mysqli_query($conn, $query) or die(mysql_error());
 
         if ($result) {
           $_SESSION['username'] = $username;
           $_SESSION['success'] = "Has sido registrado correctamente.";
-          header('location: login.php?success=1');
+          header('location: login.php');
   
         }
       }else{
@@ -68,3 +67,4 @@
         printf("<hr><center><a href='register.php'>Volver a la página de registro</a></center>");
       }
     }
+?> 
