@@ -144,7 +144,8 @@ if (!isset($_SESSION['email'])) {
       </button>
       <div class="navbar-nav">
          <div class="nav-item text-nowrap">
-            <a class="nav-link px-3" href="http://localhost/hypertext-preprocessor">Sign out</a>            
+            <a class="nav-link px-3" href="http://localhost/hypertext-preprocessor">Sign out</a>
+
          </div>
       </div>
    </header>
