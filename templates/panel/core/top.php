@@ -165,13 +165,13 @@ if (!isset($_SESSION['email'])) {
                      </a>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link" href="#">
+                     <a class="nav-link" href="clases.php">
                         <span data-feather="shopping-cart"></span>
                         Clases
                      </a>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link" href="#">
+                     <a class="nav-link" href="cursos.php">
                         <span data-feather="users"></span>
                         Cursos
                      </a>

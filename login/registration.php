@@ -21,6 +21,7 @@
       $username = mysqli_real_escape_string($conn, stripslashes($_REQUEST['username']));
       $email = mysqli_real_escape_string($conn, stripslashes($_REQUEST['email']));
       $password = mysqli_real_escape_string($conn, stripslashes($_REQUEST['password']));
+      $password = md5($password);
 
       if (empty($nombre)){array_push($error, "Nombre es un campo obligatorio");}
       if (empty($apellidos)){array_push($error, "Apellidos es un campo obligatorio");}
