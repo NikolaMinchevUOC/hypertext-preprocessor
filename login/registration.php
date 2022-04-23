@@ -47,15 +47,15 @@
 
       // Si no hay ningún error
       if (count($error) == 0) {
-        $password = md5($password);
+       
 
-        $query = "INSERT INTO `students`(`username`, `pass`, `email`, `name`, `surname`, `telephone`, `nif`, `date_registered`) VALUES('$username', '$password', '$email', '$nombre', '$apellidos', '$telefono', '$nif', '2022-04-18 00:00:00')";
+        $query = "INSERT INTO `students`(`username`, `pass`, `email`, `name`, `surname`, `telephone`, `nif`, `date_registered`) VALUES('$username', '$password', '$email', '$nombre', '$apellidos', '$telefono', '$nif', now())";
         $result = mysqli_query($conn, $query) or die(mysql_error());
 
         if ($result) {
           $_SESSION['username'] = $username;
           $_SESSION['success'] = "Has sido registrado correctamente.";
-          header('location: login.php');
+          header('location: login.php?success=1');
   
         }
       }else{

@@ -23,11 +23,11 @@
           <h1 class="h3 mb-3 fw-normal">Iniciar Sesión</h1>
 
           <div class="form-floating">
-            <input type="email" class="form-control" name="email" id="email" placeholder="usuario@uoc.edu">
+            <input type="email" class="form-control" name="email" id="email" placeholder="usuario@uoc.edu" required>
             <label for="floatingInput">Correo electrónico</label>
           </div>
           <div class="form-floating">
-            <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña">
+            <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" required>
             <label for="floatingPassword">Contraseña</label>
           </div>
 
@@ -35,11 +35,23 @@
           <hr>
           <a href="register.php" style="text-decoration: none;"><p>¿Aún no tienes una cuenta?</p></a>
           <?php 
-              if ($_GET['error']){
+              if (isset($_GET['error'])){
                 echo "<hr><div class='alert alert-danger' role='alert'>
                 El usuario o la contraseña es incorrecto.
               </div>";
               } 
+
+              unset($_GET['error']);
+              
+              if(isset($_GET['success'])){
+                echo "<hr><div class='alert alert-success' role='alert'>
+                Has sido registrado correctamente.
+              </div>";
+              }
+
+              unset($_GET['success']);
+
+              
           ?>
           <p class="mt-5 mb-3 text-muted">&copy; UOC</p>
         </form>

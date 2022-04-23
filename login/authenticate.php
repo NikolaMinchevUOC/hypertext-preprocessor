@@ -12,16 +12,24 @@
         $password = stripslashes($_REQUEST['password']);
         $password = mysqli_real_escape_string($conn, $password);
 
-        $query = "SELECT * FROM `users_admin` WHERE email='$email' AND password='" . md5($password) . "'";
-        $result = mysqli_query($conn, $query) or die(mysql_error());
+        $queryStudent = "SELECT * FROM `students` WHERE email='$email' AND pass='$password'";
+        $resultUser = mysqli_query($conn, $queryStudent);
 
-        if (mysqli_num_rows($result) == 1) {
+        $queryAdmin = "SELECT * FROM `users_admin` WHERE email='$email' AND password='$password'";
+        $resultAdmin = mysqli_query($conn, $queryAdmin) ;
+
+        if (mysqli_num_rows($resultUser) == 1) {
             // Redireccionamos al usuario al Dashboard
             $_SESSION['email'] = $email;
-            header("Location: ../panel/dashboard.php");
-        } else {
+            header("Location: ../panel/dashboardStudent.php");
+           
+        }else if(mysqli_num_rows($resultAdmin) == 1){
+            $_SESSION['email'] = $email;
+            header("Location: ../panel/dashboardAdmin.php");
+
+        }else {
             // El correo electrónico o la contraseña es incorrecto
-            header("Location: login.php?error=True");
+            header("Location: login.php?error=0");
         }
 
     }else{
