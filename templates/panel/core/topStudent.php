@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 
 // Comprobamos que el usuario este autenticado
 if (!isset($_SESSION['email'])) {
@@ -157,20 +157,10 @@ if (!isset($_SESSION['email'])) {
                   <li class="nav-item">
                      <a class="nav-link active" aria-current="page" href="#">
                         <span data-feather="home"></span>
-                        Dashboard
+                        Calendario
                      </a>
                   </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="profesores.php">
-                        Profesores
-                     </a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="clases.php">
-                        <span data-feather="shopping-cart"></span>
-                        Clases
-                     </a>
-                  </li>
+
                   <li class="nav-item">
                      <a class="nav-link" href="cursos.php">
                         <span data-feather="users"></span>
