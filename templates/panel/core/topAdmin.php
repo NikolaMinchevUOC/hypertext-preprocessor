@@ -155,7 +155,7 @@ if (!isset($_SESSION['email'])) {
             <div class="position-sticky pt-3">
                <ul class="nav flex-column">
                   <li class="nav-item">
-                     <a class="nav-link active" aria-current="page" href="#">
+                     <a class="nav-link active" aria-current="page" href="calendario.php">
                         <span data-feather="home"></span>
                         Calendario
                      </a>
@@ -186,7 +186,7 @@ if (!isset($_SESSION['email'])) {
                </h6>
                <ul class="nav flex-column mb-2">
                   <li class="nav-item">
-                     <a class="nav-link" href="#">
+                     <a class="nav-link" href="perfil.php">
                         <span data-feather="file-text"></span>
                         Perfil
                      </a>
