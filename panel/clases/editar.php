@@ -26,7 +26,6 @@ $fin  = mysqli_real_escape_string($conn, stripslashes($_POST['fin']));
 $date1 = date_create($fin);
 $finFormateado = date_format($date1, "h:i:s");
 
-
 $query = "INSERT INTO `schedule`(`id_class`, `time_start`, `time_end`, `day`) VALUES (100000,'{$inicioFormateado}','{$finFormateado}', '{$diaFormateado}')";
 mysqli_query($conn, $query) or die(mysql_error());
 
