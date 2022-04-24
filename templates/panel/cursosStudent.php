@@ -9,16 +9,25 @@ require('../db_connection.php');
 $query = "SELECT * FROM `courses` WHERE 1";
 $result = mysqli_query($conn, $query) or die(mysql_error());
 
+$email = $_SESSION["email"];
+$query2 = "SELECT * FROM `students` WHERE `email` = '{$email}'";
+$result2 = mysqli_query($conn, $query2) or die(mysql_error());
+$value2 = mysqli_fetch_assoc($result2);
+$id_usuario = $value2["id"];
+
+
+
+
+
 
 ?>
+
 
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Cursos Student</h1>
+
         <div class="btn-toolbar mb-2 mb-md-0">
-            <div class="btn-group me-2">
-                <a data-toggle='modal' href='#anadir' class='btn btn-sm btn-secondary'>Añadir Curso</a>
-            </div>
         </div>
     </div>
 
@@ -31,7 +40,8 @@ $result = mysqli_query($conn, $query) or die(mysql_error());
                     <th scope="col">Descripción</th>
                     <th scope="col">Fecha de Inicio</th>
                     <th scope="col">Fecha de Fin</th>
-                    <th scope="col">Activo</th>
+                    <th scope="col">Inscrito</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -45,107 +55,20 @@ $result = mysqli_query($conn, $query) or die(mysql_error());
                         echo "<td>" . $row["description"] . "</td>";
                         echo "<td>" . $row["date_start"] . "</td>";
                         echo "<td>" . $row["date_end"] . "</td>";
-                        echo "<td>" . $row["active"] . "</td>";
 
-                        echo "<td>" . "<a data-toggle='modal' href='#editar_" . $row["id_course"] . "'class='btn btn-sm btn-primary'>Editar</a>" . "</td>";
-                        echo "<td>" . "<a href='cursos/eliminar.php?id=" .  $row["id_course"] . "'class='btn btn-sm btn-danger'>Eliminar</a>" . "</td>";
-
-                ?>
-
-                        <!-- Modal Editar-->
-                        <div class="modal fade" id="editar_<?php echo $row["id_course"]; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title" id="myModalLabel">Editar</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="row" style="padding:50px">
-
-                                            <form method="POST" action="../panel/cursos/editar.php?id=<?php echo $row["id_course"]; ?>">
-
-
-                                                <div class="form-floating mb-2">
-                                                    <input type="text" class="form-control" name="name" id="name" placeholder="Nombre" value="<?php echo $row['name']; ?>" required>
-                                                    <label for="floatingInput">Nombre</label>
-                                                </div>
-                                                <div class="form-floating mb-2">
-                                                    <input type="text" class="form-control" name="descripcion" id="descripcion" placeholder="Descripción" value="<?php echo $row['description']; ?>" required>
-                                                    <label for="floatingInput">Descripción</label>
-                                                </div>
-                                                <div class="form-floating mb-2">
-                                                    <input type="text" class="form-control" name="fecha_inicio" id="fecha_inicio" placeholder="Fecha de Inicio" value="<?php echo $row['date_start']; ?>" required>
-                                                    <label for="floatingInput">Fecha de Inicio</label>
-                                                </div>
-                                                <div class="form-floating mb-2">
-                                                    <input type="tel" class="form-control" name="fecha_fin" id="fecha_fin" placeholder="Fecha de Fin" value="<?php echo $row['date_end']; ?>" required>
-                                                    <label for="floatingInput">Fecha de Fin</label>
-                                                </div>
-                                                <div class="form-floating mb-2">
-                                                    <input type="text" class="form-control" name="active" id="active" placeholder="Activo" value="<?php echo $row['active']; ?>" required>
-                                                    <label for="floatingInput">Activo</label>
-                                                </div>
-                                                <button class="w-100 btn btn-lg btn-primary" type="submit" name="register">Enviar</button>
-
-
-                                            </form>
+                        $query16 = "SELECT * FROM enrollment where id_student = $id_usuario and id_course = {$row['id_course']}";
+                        $result16 = mysqli_query($conn, $query16);
+                        $value16 = mysqli_fetch_assoc($result16);
 
 
 
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Modal Añadir -->
-                        <div class="modal fade" id="anadir" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title" id="myModalLabel">Añadir</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="row" style="padding:50px">
-
-                                            <form method="POST" action="../panel/cursos/anadir.php">
-
-
-                                                <div class="form-floating mb-2">
-                                                    <input type="text" class="form-control" name="name" id="name" placeholder="Nombre" required>
-                                                    <label for="floatingInput">Nombre del Curso</label>
-                                                </div>
-                                                <div class="form-floating mb-2">
-                                                    <input type="text" class="form-control" name="descripcion" id="descripcion" placeholder="Apellidos" required>
-                                                    <label for="floatingInput">Descripción</label>
-                                                </div>
-                                                <div class="form-floating mb-2">
-                                                    <input type="tel" class="form-control" name="fecha_inicio" id="fecha_inicio" placeholder="Fecha de Inicio" value="2022-05-15" required>
-                                                    <label for="floatingInput">Fecha de Inicio</label>
-                                                </div>
-                                                <div class="form-floating mb-2">
-                                                    <input type="tel" class="form-control" name="fecha_fin" id="fecha_fin" placeholder="Fecha de Fin" value="2022-05-15" required>
-                                                    <label for="floatingInput">Fecha de Fin</label>
-                                                </div>
-                                                <button class="w-100 btn btn-lg btn-primary" type="submit" name="register">Añadir</button>
-
-                                            </form>
-
-
-
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                <?php
+                        if (mysqli_num_rows($result16) > 0 && $value16['status'] == 1) {
+                            echo "<td>" . "<a href='cursos/desinscribir.php?id=" .  $row['id_course'] . "'class='btn btn-sm btn-primary'>Ya Inscrito</a>" . "</td>";
+                        } else if (mysqli_num_rows($result16) > 0 && $value16['status'] == 0) {
+                            echo "<td>" . "<a href='cursos/inscribirseUpdate.php?id=" .  $row['id_course'] . "'class='btn btn-sm btn-danger'>Inscribirse</a>" . "</td>";
+                        } else {
+                            echo "<td>" . "<a href='cursos/inscribirseInsert.php?id=" .  $row['id_course'] . "'class='btn btn-sm btn-danger'>Inscribirse</a>" . "</td>";
+                        }
 
                         echo "<tr>";
                     }

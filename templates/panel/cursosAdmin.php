@@ -74,11 +74,11 @@ $result = mysqli_query($conn, $query) or die(mysql_error());
                                                     <label for="floatingInput">Descripción</label>
                                                 </div>
                                                 <div class="form-floating mb-2">
-                                                    <input type="text" class="form-control" name="fecha_inicio" id="fecha_inicio" placeholder="Fecha de Inicio" value="<?php echo $row['date_start']; ?>" required>
+                                                    <input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio" placeholder="Fecha de Inicio" value="<?php echo $row['date_start']; ?>" required>
                                                     <label for="floatingInput">Fecha de Inicio</label>
                                                 </div>
                                                 <div class="form-floating mb-2">
-                                                    <input type="tel" class="form-control" name="fecha_fin" id="fecha_fin" placeholder="Fecha de Fin" value="<?php echo $row['date_end']; ?>" required>
+                                                    <input type="date" class="form-control" name="fecha_fin" id="fecha_fin" placeholder="Fecha de Fin" value="<?php echo $row['date_end']; ?>" required>
                                                     <label for="floatingInput">Fecha de Fin</label>
                                                 </div>
                                                 <div class="form-floating mb-2">
@@ -123,11 +123,11 @@ $result = mysqli_query($conn, $query) or die(mysql_error());
                                                     <label for="floatingInput">Descripción</label>
                                                 </div>
                                                 <div class="form-floating mb-2">
-                                                    <input type="tel" class="form-control" name="fecha_inicio" id="fecha_inicio" placeholder="Fecha de Inicio" value="2022-05-15" required>
+                                                    <input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio" placeholder="Fecha de Inicio" value="2022-05-15" required>
                                                     <label for="floatingInput">Fecha de Inicio</label>
                                                 </div>
                                                 <div class="form-floating mb-2">
-                                                    <input type="tel" class="form-control" name="fecha_fin" id="fecha_fin" placeholder="Fecha de Fin" value="2022-05-15" required>
+                                                    <input type="date" class="form-control" name="fecha_fin" id="fecha_fin" placeholder="Fecha de Fin" value="2022-05-15" required>
                                                     <label for="floatingInput">Fecha de Fin</label>
                                                 </div>
                                                 <button class="w-100 btn btn-lg btn-primary" type="submit" name="register">Añadir</button>
