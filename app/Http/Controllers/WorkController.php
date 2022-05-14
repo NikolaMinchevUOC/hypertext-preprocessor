@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Exam; 
-class ExamController extends Controller
+use App\Models\Work; 
+
+class WorkController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +14,8 @@ class ExamController extends Controller
      */
     public function index()
     {
-        $examenes = Exam::all();
-        return view('dashboard.exam.index')->with('examenes', $examenes);
+        $trabajos = Work::all();
+        return view('dashboard.work.index')->with('trabajos', $trabajos);
     }
 
     /**
@@ -24,7 +25,7 @@ class ExamController extends Controller
      */
     public function create()
     {
-        return view('dashboard.exam.create');
+        return view('dashboard.work.create');
     }
 
     /**
@@ -35,16 +36,15 @@ class ExamController extends Controller
      */
     public function store(Request $request)
     {
-        $examenes = new Exam();
-        $examenes->id_class = $request->get('id_class');
-        $examenes->id_student = $request->get('id_student');
-        $examenes->name = $request->get('name');
-        $examenes->mark = $request->get('mark');
+        $trabajos = new Work();
+        $trabajos->id_class = $request->get('id_class');
+        $trabajos->id_student = $request->get('id_student');
+        $trabajos->name = $request->get('name');
+        $trabajos->mark = $request->get('mark');
 
-        $examenes->save();
+        $trabajos->save();
 
-        return redirect('/examenes');
-
+        return redirect('/trabajos');
     }
 
     /**
@@ -65,9 +65,9 @@ class ExamController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {   
-        $examen = Exam::where('id_exam', $id)->first(); 
-        return view('dashboard.exam.edit')->with('examen', $examen);
+    {
+        $trabajo = Work::where('id_work', $id)->first(); 
+        return view('dashboard.work.edit')->with('trabajo', $trabajo);
     }
 
     /**
@@ -79,16 +79,16 @@ class ExamController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $examen = Exam::where('id_exam', $id)->first(); 
+        $trabajo = Work::where('id_work', $id)->first(); 
 
-        $examen->id_class = $request->get('id_class');
-        $examen->id_student = $request->get('id_student');
-        $examen->name = $request->get('name');
-        $examen->mark = $request->get('mark');
+        $trabajo->id_class = $request->get('id_class');
+        $trabajo->id_student = $request->get('id_student');
+        $trabajo->name = $request->get('name');
+        $trabajo->mark = $request->get('mark');
 
-        $examen->save();
+        $trabajo->save();
 
-        return redirect('/examenes');
+        return redirect('/trabajos');
     }
 
     /**
@@ -99,9 +99,9 @@ class ExamController extends Controller
      */
     public function destroy($id)
     {
-        $examen = Exam::where('id_exam', $id)->first(); 
-        $examen->delete();
+        $trabajo = Work::where('id_work', $id)->first(); 
+        $trabajo->delete();
 
-        return redirect('/examenes');
+        return redirect('/trabajos');
     }
 }

@@ -18,6 +18,7 @@ Route::get('/', function () {
 })->name('bienvenida');
 
 Route::resource('examenes', 'App\Http\Controllers\ExamController');
+Route::resource('trabajos', 'App\Http\Controllers\WorkController');
 
 Route::middleware([
     'auth:sanctum',
