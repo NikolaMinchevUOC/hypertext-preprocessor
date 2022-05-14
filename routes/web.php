@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 })->name('bienvenida');
 
+Route::resource('examenes', 'App\Http\Controllers\ExamController');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
