@@ -20,6 +20,7 @@ Route::get('/', function () {
 Route::resource('examenes', 'App\Http\Controllers\ExamController');
 Route::resource('trabajos', 'App\Http\Controllers\WorkController');
 Route::resource('porcentajes', 'App\Http\Controllers\PercentageController');
+Route::resource('notificaciones', 'App\Http\Controllers\NotificationController');
 
 Route::middleware([
     'auth:sanctum',
