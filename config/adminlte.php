@@ -258,7 +258,12 @@ return [
             'icon'        => 'far fa-fw fa-file',
             'label_color' => 'success',
         ],
-
+        [
+            'text'        => 'Porcentajes',
+            'url'         => '/porcentajes',
+            'icon'        => 'far fa-fw fa-file',
+            'label_color' => 'success',
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'Perfil',
