@@ -22,11 +22,17 @@ Route::resource('trabajos', 'App\Http\Controllers\WorkController');
 Route::resource('porcentajes', 'App\Http\Controllers\PercentageController');
 Route::resource('notificaciones', 'App\Http\Controllers\NotificationController');
 
+
+
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
+
+
+
     Route::get('/dashboard', function () {
         return view('dashboard.index');
     })->name('dashboard');

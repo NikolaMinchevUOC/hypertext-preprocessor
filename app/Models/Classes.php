@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Percentage extends Model
+class Classes extends Model
 {
-
     use HasFactory;
 
-    protected $table="percentage";
-    protected $primaryKey="id_percentage";
+    protected $table="class";
+    protected $primaryKey="id_class";
     protected $fillable = [
+        'id_teacher',
         'id_course',
-        'id_class',
-        'continuous_assessment',
-        'exams',
+        'id_schedule',
+        'name',
+        'color',
     ];
 }

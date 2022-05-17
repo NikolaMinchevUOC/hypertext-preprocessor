@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('percentages', function (Blueprint $table) {
-
-            $table->id('id_percentage');
+        Schema::create('classes', function (Blueprint $table) {
+            $table->id('id_class');
+            $table->integer('id_teacher');
             $table->integer('id_course');
-            $table->integer('id_class');
-            $table->float('continuous_assessment', 10, 2);
-            $table->float('exams', 10, 2);
+            $table->integer('id_schedule');
+            $table->string('name');
+            $table->string('color');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('percentages');
+        Schema::dropIfExists('classes');
     }
 };

@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('percentages', function (Blueprint $table) {
-
-            $table->id('id_percentage');
-            $table->integer('id_course');
-            $table->integer('id_class');
-            $table->float('continuous_assessment', 10, 2);
-            $table->float('exams', 10, 2);
+        Schema::create('schedules', function (Blueprint $table) {
+            $table->id('id_schedule');
+            $table->time('time_start');
+            $table->time('time_end');
+            $table->date('day');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('percentages');
+        Schema::dropIfExists('schedules');
     }
 };

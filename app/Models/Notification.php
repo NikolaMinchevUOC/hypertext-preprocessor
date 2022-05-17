@@ -7,6 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Notification extends Model
 {
-    protected $primaryKey = 'id_notification';
+
     use HasFactory;
+
+    protected $table = "notifications";
+    protected $primaryKey = "id_notification";
+    protected $fillable = [
+        'id_student',
+        'work',
+        'exam',
+        'continuos_assessment',
+        'final_note',
+    ];
 }

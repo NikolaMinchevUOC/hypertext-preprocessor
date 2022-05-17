@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id('id_exam');
             $table->integer('id_class');
             $table->integer('id_student');
-            $table->string('name', 256);
-            $table->float('mark', 10,2);
+            $table->string('name');
+            $table->float('mark');
             $table->timestamps();
         });
     }

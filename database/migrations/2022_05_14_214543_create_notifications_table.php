@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id('id_notification');
-            $table->integer('id_student');
-            $table->integer('work');
-            $table->integer('exam');
+            $table->foreignId('id_student')->references('id_student')->on('students');
+            $table->float('work', 10, 2);
+            $table->float('exam', 10, 2);
             $table->integer('continuous_assessment');
-            $table->integer('final_note');
+            $table->float('final_note', 10, 2);
             $table->timestamps();
         });
     }
