@@ -4,32 +4,28 @@
 
 @section('content')
 
-<div class="block mx-auto my-12 p-8 bg-white w-1/3 border border-gray-200
-rounded-lg shadow-lg">
+<form class="form-signin" method="POST">
+    @csrf
+    
+    <img class="mb-4" src="https://www.uoc.edu/portal/system/modules/edu.uoc.presentations/resources/img/branding/logo-uoc-default.png" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Iniciar Sesión</h1>
+    
+    <label for="inputEmail" class="sr-only">Correo Electrónico</label>
+    <input placeholder="Correo Electrónico" id="email" name="email" type="email" class="form-control" required autofocus>
+    
+    <label for="inputPassword" class="sr-only">Contraseña</label>
+    <input placeholder="Contraseña" id="password" name="password" type="password" class="form-control" required>
+    
+    @error('message')
+    <div class="alert alert-danger" role="alert">
+       {{ $message }}
+    </div>
+    @enderror
 
-    <h1 class="text-3xl text-center font-bold">Login</h1>
-
-    <form class="mt-4" method="POST" action="">
-        @csrf
-
-        <input type="email" class="border border-gray-200 rounded-md bg-gray-200 w-full
-    text-lg placeholder-gray-900 p-2 my-2 focus:bg-white" placeholder="Email" id="email" name="email">
-
-        <input type="password" class="border border-gray-200 rounded-md bg-gray-200 w-full
-    text-lg placeholder-gray-900 p-2 my-2 focus:bg-white" placeholder="Password" id="password" name="password">
-
-        @error('message')
-        <p class="border border-red-500 rounded-md bg-red-100 w-full
-      text-red-600 p-2 my-2">* {{ $message }}</p>
-        @enderror
-
-        <button type="submit" class="rounded-md bg-indigo-500 w-full text-lg
-    text-white font-semibold p-2 my-3 hover:bg-indigo-600">Send</button>
-
-
-    </form>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Inciar sesión</button>
+    <p class="mt-5 mb-3 text-muted">&copy; UOC</p>
+  </form>
 
 
-</div>
 
 @endsection

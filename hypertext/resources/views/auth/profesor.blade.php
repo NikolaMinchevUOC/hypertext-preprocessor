@@ -1,17 +1,16 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
-@section('title', 'Login')
+@section('title', 'Home')
+
+@section('h2', 'Profesor')
+
 
 @section('content')
 
-<div class="block mx-auto my-12 p-8 bg-white w-1/3 border border-gray-200
-rounded-lg shadow-lg">
-
-    <h1 class="text-3xl text-center font-bold">Profesor</h1>
-
-
-
-
+<div class="container">
+    <h1 class="text-5xl text-center pt-24">Bienvenido Profesor</h1>
 </div>
+
+
 
 @endsection
