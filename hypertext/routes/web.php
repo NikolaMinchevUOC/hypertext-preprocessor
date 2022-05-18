@@ -17,7 +17,8 @@ Route::get('/register', [RegisterController::class, 'create'])
 Route::post('/register', [RegisterController::class, 'store'])
     ->name('register.store');
 
-Route::resource('adminArticulos', 'App\Http\Controllers\AdminController');
+Route::resource('adminController', 'App\Http\Controllers\AdminController');
+
 
 Route::get('/login', [SessionsController::class, 'create'])
     ->middleware('guest')
@@ -42,3 +43,20 @@ Route::get('/profesor', [ProfesorController::class, 'index'])
 Route::get('/admin-courses', [AdminController::class, 'courses'])
     ->middleware('auth.admin')
     ->name('adminCourses.index');
+
+Route::get('/admin-courses/create', [AdminController::class, 'createCourse'])
+    ->middleware('auth.admin')
+    ->name('adminCourses.createCourse');
+
+
+Route::post('/admin-courses/create', [AdminController::class, 'storeCourse'])
+    ->name('adminCourses.storeCourse');
+
+Route::get('/admin-courses/edit/{id}', [AdminController::class, 'editCourse'])
+    ->middleware('auth.admin')
+    ->name('adminCourses.editCourse');
+
+Route::post('/admin-courses/update/{id}', [AdminController::class, 'updateCourse'])
+    ->middleware('auth.admin')
+    ->name('adminCourses.updateCourse');
+
