@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
         $user1->name = 'niko@gmail.com';
         $user1->email = 'niko@gmail.com';
         $user1->password = 'niko@gmail.com';
-        $user1->role = 'user';
+        $user1->role = 'student';
 
         $user1->save();
 

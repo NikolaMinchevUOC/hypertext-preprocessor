@@ -23,6 +23,8 @@
     @enderror
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Inciar sesión</button>
+    <hr>
+    <a href="/register" class="">Registrarse</a>
     <p class="mt-5 mb-3 text-muted">&copy; UOC</p>
   </form>
 

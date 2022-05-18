@@ -22,7 +22,6 @@
   <label for="inputEmail" class="sr-only">Correo Electrónico</label>
   <input type="email" class="form-control" placeholder="Correo Electrónico" id="email" name="email">
 
-
   @error('email')
   <div class="alert alert-danger" role="alert">
     {{ $message }}
@@ -44,6 +43,9 @@
   <input type="password" class="form-control" placeholder="Confirma la contraseña" id="password_confirmation" name="password_confirmation" required>
 
   <button class="btn btn-lg btn-primary btn-block" type="submit">Registrarse</button>
+  
+  <hr>
+  <a href="/login" class="">Iniciar Sesión</a>
 
   <p class="mt-5 mb-3 text-muted">&copy; UOC</p>
 </form>

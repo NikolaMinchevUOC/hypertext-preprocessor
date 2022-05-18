@@ -23,9 +23,14 @@ class RegisterController extends Controller
             'password' => 'required|confirmed',
         ]);
 
-        $user = User::create(request(['name', 'email', 'password']));
+        $user = User::create(request(['name', 'email', 'role' ,'password']));
+        $user_update = User::where('email', request(['email']))->first();
+        $user_update->role = "student";
+        $user_update->save();
 
         auth()->login($user);
+
+
         return redirect()->to('/');
     }
 }
