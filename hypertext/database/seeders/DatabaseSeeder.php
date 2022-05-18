@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Classes;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Course;
+use App\Models\Schedule;
 
 class DatabaseSeeder extends Seeder
 {
@@ -48,5 +50,41 @@ class DatabaseSeeder extends Seeder
         $course->active = 1;
 
         $course->save();
+
+
+        $schedule = new Schedule();
+        $schedule->time_start = '12:30:00';
+        $schedule->time_end = '13:30:00';
+        $schedule->day = '2022-04-24';
+
+        $schedule->save();
+
+        $schedule2 = new Schedule();
+        $schedule2->time_start = '13:30:00';
+        $schedule2->time_end = '14:30:00';
+        $schedule2->day = '2022-04-25';
+
+        $schedule2->save();
+
+
+
+
+
+        $class = new Classes;
+        $class->id_teacher = 1;
+        $class->id_course = 1;
+        $class->id_schedule = 1;
+        $class->name = 'Intro to PHP';
+        $class->color = "#888";
+        $class->save();
+
+
+        $class2 = new Classes;
+        $class2->id_teacher = 1;
+        $class2->id_course = 1;
+        $class2->id_schedule = 2;
+        $class2->name = 'PHP Advanced';
+        $class2->color = "#333";
+        $class2->save();
     }
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfesorController;
+use App\Http\Controllers\ScheduleController;
 
 Route::get('/', function () {
     return view('home');
@@ -40,6 +41,9 @@ Route::get('/profesor', [ProfesorController::class, 'index'])
     ->middleware('auth.profesor')
     ->name('profesor.index');
 
+
+// ************************* COURSES
+
 Route::get('/admin-courses', [AdminController::class, 'courses'])
     ->middleware('auth.admin')
     ->name('adminCourses.index');
@@ -60,3 +64,30 @@ Route::post('/admin-courses/update/{id}', [AdminController::class, 'updateCourse
     ->middleware('auth.admin')
     ->name('adminCourses.updateCourse');
 
+// ************************* Schedule
+
+Route::resource('scheduleController', 'App\Http\Controllers\ScheduleController');
+
+Route::get('/admin-schedule', [ScheduleController::class, 'getSchedules'])
+    ->middleware('auth.admin')
+    ->name('adminSchedules.getSchedules');
+
+Route::get('/admin-schedule/create', [ScheduleController::class, 'createSchedule'])
+    ->middleware('auth.admin')
+    ->name('createSchedule');
+
+
+Route::post('/admin-schedule/create', [ScheduleController::class, 'storeSchedule'])
+    ->name('adminSchedule.storeSchedule');
+
+Route::get('/admin-schedule/edit/{id}', [ScheduleController::class, 'editSchedule'])
+    ->middleware('auth.admin')
+    ->name('adminSchedule.editSchedule');
+
+Route::post('/admin-schedule/destroy', [ScheduleController::class, 'destroySchedule'])
+    ->middleware('auth.admin')
+    ->name('adminSchedule.destroySchedule');
+
+Route::post('/admin-schedule/update/{id}', [ScheduleController::class, 'updateSchedule'])
+    ->middleware('auth.admin')
+    ->name('adminSchedule.updateSchedule');
