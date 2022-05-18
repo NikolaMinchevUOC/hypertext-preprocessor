@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\Course;
 
 class DatabaseSeeder extends Seeder
 {
@@ -38,5 +39,14 @@ class DatabaseSeeder extends Seeder
         $user2->role = 'profesor';
 
         $user2->save();
+
+        $course = new Course;
+        $course->name = 'Curso de PHP';
+        $course->description = 'En este curso de PHP aprenderás a manejar este lenguaje de programación junto a otros frameworks como Laravel';
+        $course->date_start = '2022-04-24';
+        $course->date_end = '2022-05-24';
+        $course->active = 1;
+
+        $course->save();
     }
 }

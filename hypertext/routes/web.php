@@ -17,7 +17,7 @@ Route::get('/register', [RegisterController::class, 'create'])
 Route::post('/register', [RegisterController::class, 'store'])
     ->name('register.store');
 
-
+Route::resource('adminArticulos', 'App\Http\Controllers\AdminController');
 
 Route::get('/login', [SessionsController::class, 'create'])
     ->middleware('guest')
@@ -38,3 +38,7 @@ Route::get('/admin', [AdminController::class, 'index'])
 Route::get('/profesor', [ProfesorController::class, 'index'])
     ->middleware('auth.profesor')
     ->name('profesor.index');
+
+Route::get('/admin-courses', [AdminController::class, 'courses'])
+    ->middleware('auth.admin')
+    ->name('adminCourses.index');
