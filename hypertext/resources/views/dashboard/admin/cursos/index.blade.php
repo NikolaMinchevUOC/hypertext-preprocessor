@@ -2,7 +2,6 @@
 
 @section('title', 'Login')
 
-
 @section('content')
 
 <div class="block mx-auto  p-8 bg-white  border border-gray-200
