@@ -33,7 +33,7 @@
               <li class="nav-item">
                 <a class="nav-link active" href="/">
                   <span data-feather="home"></span>
-                  Dashboard <span class="sr-only">(current)</span>
+                  Dashboard Admin <span class="sr-only">(current)</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -80,7 +80,7 @@
               </div>
             </nav>  
     
-            @elseif (Auth::user()->role === "student")
+            @elseif (Auth::user()->role === "user")
             <div class="container-fluid">
               <div class="row">
                 <nav class="col-md-2 d-none d-md-block bg-light sidebar">
@@ -89,7 +89,7 @@
                       <li class="nav-item">
                         <a class="nav-link active" href="#">
                           <span data-feather="home"></span>
-                          Dashboard <span class="sr-only">(current)</span>
+                          Dashboard Student <span class="sr-only">(current)</span>
                         </a>
                       </li>
                       <li class="nav-item">
