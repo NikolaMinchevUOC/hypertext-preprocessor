@@ -12,7 +12,7 @@ rounded-lg shadow-lg">
         <div class="row-span-3 ...">
         </div>
         <div class="col-span-2 ...">
-            <h1 class="text-3xl text-center font-bold">Admin Courses</h1>
+            <h1 class="text-3xl text-center font-bold">Admin Clase</h1>
         </div>
         <div class="row-span-2 col-span-2 ...">
 
@@ -24,26 +24,36 @@ rounded-lg shadow-lg">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">name</th>
-                        <th scope="col">description</th>
-                        <th scope="col">date_start</th>
-                        <th scope="col">date_end</th>
-                        <th scope="col">active</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">ID Teacher</th>
+                        <th scope="col">ID Course</th>
+                        <th scope="col">Day Schedule</th>
+                        <th scope="col">Time Start Schedule</th>
+                        <th scope="col">Time End Schedule</th>
+                        <th scope="col">Color</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($courses as $curso)
+                    @foreach ($clases as $clase)
                     <tr>
-                        <td>{{$curso->id_course}}</td>
-                        <td>{{$curso->name}}</td>
-                        <td>{{$curso->description}}</td>
-                        <td>{{$curso->date_start}}</td>
-                        <td>{{$curso->date_end}}</td>
-                        <td>{{$curso->active}}</td>
+                        <td>{{$clase->id_class}}</td>
+                        <td>{{$clase->name}}</td>
+                        
+                        @php
+                        $teacher = \App\Models\User::where('id', $clase->id_teacher)->first();
+                        $course = \App\Models\Course::where('id_course', $clase->id_course)->first();
+                        $schedule = \App\Models\Schedule::where('id_schedule', $clase->id_schedule)->first();
+                        @endphp
+                    
+                        <td>{{$teacher->name}}</td>
+                        <td>{{$course->name}}</td>
+                        <td>{{$schedule->day}}</td>
+                        <td>{{$schedule->time_start}}</td>
+                        <td>{{$schedule->time_end}}</td>
+                        <td>{{$clase->color}}</td>
                         <td>
-                            <form action="{{ route('adminController.destroy',$curso->id_course) }}" method="POST">
-
-                              <a href="/admin-courses/edit/{{$curso->id_course}}" class="btn btn-info">Editar</a>
+                            <form action="{{ route('clasesController.destroy',$clase->id_class) }}" method="POST">
+                              <a href="/admin-clases/edit/{{$clase->id_class}}" class="btn btn-info">Editar</a>
                               @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Delete</button>

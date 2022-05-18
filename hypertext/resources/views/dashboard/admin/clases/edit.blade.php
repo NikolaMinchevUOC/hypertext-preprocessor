@@ -8,49 +8,61 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Creación de Cursos</div>
+                <div class="card-header">Edición de Clases</div>
 
                 <div class="card-body">
 
-                    <form method="POST" action="/admin-courses/update/{{$curso->id_course}}">
+                    <form method="POST" action="/admin-courses/update/{{$clases->id_class}}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">Nombre del curso</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Nombre de la Clase</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" required autofocus value="{{$curso->name}}">
+                                <input id="name" type="text" class="form-control" name="name" required autofocus value="{{$clases->name}}">
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="description" class="col-md-4 col-form-label text-md-right">Descripción</label>
+                        @php 
+                            $cursos = \App\Models\Course::all();
+                            $profesores =  \App\Models\User::where('role', 'profesor')->get();
+                            $schedules =  \App\Models\Schedule::all();
+                        @endphp
 
-                            <div class="col-md-6">
-                                <input id="description" type="text" class="form-control" name="description" required value="{{$curso->description}}">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="date_start" class="col-md-4 col-form-label text-md-right">Fecha Comienzo</label>
-
-                            <div class="col-md-6">
-                                <input id="date_start" type="date" class="form-control" name="date_start" required value="{{$curso->date_start}}">
-                            </div>
-                        </div>
 
                         <div class="form-group row">
-                            <label for="date_end" class="col-md-4 col-form-label text-md-right">Fecha de término</label>
+                            <label for="course" class="col-md-4 col-form-label text-md-right">Selecciona un curso:</label>
+                            <select class="form-control col-md-6" id="course">
 
-                            <div class="col-md-6">
-                                <input id="date_end" type="date" class="form-control" name="date_end" required value="{{$curso->date_end}}">
-                            </div>
+                            @foreach ($cursos as $curso)
+                                <option>{{$curso->name}}</option>
+                            @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group row">
-                            <label for="active" class="col-md-4 col-form-label text-md-right">¿Activo?</label>
+                            <label for="profesor" class="col-md-4 col-form-label text-md-right">Selecciona un profesor:</label>
+                            <select class="form-control col-md-6" id="profesor">
+                            @foreach ($profesores as $profesor)
+                                <option>{{$profesor->name}}</option>
+                            @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="schedule" class="col-md-4 col-form-label text-md-right">Selecciona un Schedule:</label>
+                            <select class="form-control col-md-6" id="schedule">
+                            @foreach ($schedules as $schedule)
+                                <option>{{$schedule->day}} | {{$schedule->time_start}} - {{$schedule->time_end}}</option>
+                            @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="description" class="col-md-4 col-form-label text-md-right">Color</label>
 
                             <div class="col-md-6">
-                                <input class="form-check-input" type="checkbox" checked name="active" id="active">
+                                <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#563d7c" title="Choose your color">
                             </div>
                         </div>
 

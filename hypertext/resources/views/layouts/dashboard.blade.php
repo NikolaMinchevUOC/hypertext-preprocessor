@@ -50,6 +50,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                          <a class="nav-link" href="/admin-clases">
+                              <span data-feather="file"></span>
+                              Clases
+                          </a>
+                      </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="#">
                                 <span data-feather="shopping-cart"></span>
                                 Notificaciones

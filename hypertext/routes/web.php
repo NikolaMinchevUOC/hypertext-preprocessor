@@ -6,6 +6,8 @@ use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfesorController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\ClasesController;
+
 
 Route::get('/', function () {
     return view('home');
@@ -91,3 +93,33 @@ Route::post('/admin-schedule/destroy', [ScheduleController::class, 'destroySched
 Route::post('/admin-schedule/update/{id}', [ScheduleController::class, 'updateSchedule'])
     ->middleware('auth.admin')
     ->name('adminSchedule.updateSchedule');
+
+
+// ************************* Clases
+
+Route::resource('clasesController', 'App\Http\Controllers\ClasesController');
+
+Route::get('/admin-clases', [ClasesController::class, 'getClases'])
+    ->middleware('auth.admin')
+    ->name('adminClases.getClases');
+
+Route::get('/admin-clases/create', [ClasesController::class, 'createClases'])
+    ->middleware('auth.admin')
+    ->name('createClases');
+
+
+Route::post('/admin-clases/create', [ClasesController::class, 'storeClases'])
+    ->name('adminClases.storeClases');
+
+Route::get('/admin-clases/edit/{id}', [ClasesController::class, 'editClase'])
+    ->middleware('auth.admin')
+    ->name('adminClases.editClase');
+
+Route::post('/admin-clases/destroy', [ClasesController::class, 'destroy'])
+    ->middleware('auth.admin')
+    ->name('adminClases.destroy');
+
+Route::post('/admin-clases/update/{id}', [ClasesController::class, 'updateClases'])
+    ->middleware('auth.admin')
+    ->name('adminClases.updateClases');
+
