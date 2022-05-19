@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Classes;
+use App\Models\User;
 
 class ClasesController extends Controller
 {
@@ -15,47 +16,41 @@ class ClasesController extends Controller
         return view('dashboard.admin.clases.index')->with('clases', $clases);
     }
 
-    public function createClase()
+    public function createClases()
     {
         return view('dashboard.admin.clases.create');
     }
 
-    public function storeClase(Request $request)
+    public function storeClases(Request $request)
     {
-        $curso = new Course();
-        $curso->name = $request->name;
-        $curso->description = $request->description;
-        $curso->date_start = $request->start;
-        $curso->date_end = $request->end;
+        $clase = new Classes();
+        $clase->name = $request->get('name');
+        $clase->id_teacher = $request->get('profesor');
+        $clase->id_course = $request->get('course');
+        $clase->id_schedule = $request->get('schedule');
+        $clase->color = $request->get('color');
+        $clase->save();
 
-        if ($request->active === "on") {
-            $curso->active = 1;
-        } else {
-            $curso->active = 0;
-        }
-
-        $curso->save();
-        return redirect('admin-clases');
+        return redirect('/admin-clases');
     }
 
     public function editClase($id)
     {
-        $clases = Classes::where('id_course', $id)->first();
+        $clases = Classes::where('id_class', $id)->first();
         return view('dashboard.admin.clases.edit')->with('clases', $clases);
     }
 
 
-    public function updateClase(Request $request, $id)
+    public function updateClases(Request $request, $id)
     {
 
-        $clase = Classes::where('id_course', $id)->first();
-        return $clase;
-        #$clase->name = $request->get('name');
-        #$clase->id_course = $request->get('course');
-        #$clase->date_start = $request->get('date_start');
-        #$clase->date_end = $request->get('date_end');
-
-        #$clase->save();
+        $clase = Classes::where('id_class', $id)->first();
+        $clase->name = $request->get('name');
+        $clase->id_teacher = $request->get('profesor');
+        $clase->id_course = $request->get('course');
+        $clase->id_schedule = $request->get('schedule');
+        $clase->color = $request->get('color');
+        $clase->save();
 
         return redirect('/admin-clases');
     }
@@ -69,5 +64,4 @@ class ClasesController extends Controller
 
         return redirect('admin-clases');
     }
-
 }

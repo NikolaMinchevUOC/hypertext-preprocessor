@@ -17,7 +17,7 @@ rounded-lg shadow-lg">
         <div class="row-span-2 col-span-2 ...">
 
 
-            <a href="/admin-courses/create" class="btn btn-primary">CREAR</a>
+            <a href="/admin-clases/create" class="btn btn-primary">CREAR</a>
 
 
             <table class="table table-dark table-striped mt-4">
@@ -38,13 +38,13 @@ rounded-lg shadow-lg">
                     <tr>
                         <td>{{$clase->id_class}}</td>
                         <td>{{$clase->name}}</td>
-                        
+
                         @php
                         $teacher = \App\Models\User::where('id', $clase->id_teacher)->first();
                         $course = \App\Models\Course::where('id_course', $clase->id_course)->first();
                         $schedule = \App\Models\Schedule::where('id_schedule', $clase->id_schedule)->first();
                         @endphp
-                    
+
                         <td>{{$teacher->name}}</td>
                         <td>{{$course->name}}</td>
                         <td>{{$schedule->day}}</td>
@@ -53,8 +53,8 @@ rounded-lg shadow-lg">
                         <td>{{$clase->color}}</td>
                         <td>
                             <form action="{{ route('clasesController.destroy',$clase->id_class) }}" method="POST">
-                              <a href="/admin-clases/edit/{{$clase->id_class}}" class="btn btn-info">Editar</a>
-                              @csrf
+                                <a href="/admin-clases/edit/{{$clase->id_class}}" class="btn btn-info">Editar</a>
+                                @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>

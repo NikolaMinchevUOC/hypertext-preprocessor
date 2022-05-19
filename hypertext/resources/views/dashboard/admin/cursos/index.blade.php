@@ -43,8 +43,8 @@ rounded-lg shadow-lg">
                         <td>
                             <form action="{{ route('adminController.destroy',$curso->id_course) }}" method="POST">
 
-                              <a href="/admin-courses/edit/{{$curso->id_course}}" class="btn btn-info">Editar</a>
-                              @csrf
+                                <a href="/admin-courses/edit/{{$curso->id_course}}" class="btn btn-info">Editar</a>
+                                @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
