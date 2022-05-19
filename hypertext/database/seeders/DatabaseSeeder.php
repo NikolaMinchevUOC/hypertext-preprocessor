@@ -22,30 +22,48 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+
         $user = new User;
-        $user->name = 'admin@gmail.com';
+        $user->name = 'Administrador';
+        $user->surname = 'UOC';
+        $user->telephone = '+34656560945';
+        $user->nif = '56566550O';
         $user->email = 'admin@gmail.com';
         $user->password = 'admin@gmail.com';
         $user->role = 'admin';
-
         $user->save();
 
         $user1 = new User;
-        $user1->name = 'niko@gmail.com';
+        $user1->name = 'Nikola';
+        $user1->surname = 'Minchev Penev';
+        $user1->telephone = '+34634340911';
+        $user1->nif = '45432332I';
         $user1->email = 'niko@gmail.com';
         $user1->password = 'niko@gmail.com';
         $user1->role = 'student';
-
         $user1->save();
 
-        $user2 = new User;
-        $user2->name = 'profesor@gmail.com';
-        $user2->email = 'profesor@gmail.com';
-        $user2->password = 'profesor@gmail.com';
-        $user2->role = 'profesor';
 
+        $user2 = new User;
+        $user2->name = 'Israel';
+        $user2->surname = 'Pérez Pérez';
+        $user2->telephone = '+3465600236';
+        $user2->nif = '12454441D';
+        $user2->email = 'israel@gmail.com';
+        $user2->password = 'israel@gmail.com';
+        $user2->role = 'student';
         $user2->save();
+
+
+        $user3 = new User;
+        $user3->name = 'Profesor';
+        $user3->surname = 'UOC';
+        $user3->telephone = '+34656562214';
+        $user3->nif = '10454545L';
+        $user3->email = 'profesor@gmail.com';
+        $user3->password = 'profesor@gmail.com';
+        $user3->role = 'profesor';
+        $user3->save();
 
         $course = new Course;
         $course->name = 'Curso de PHP';
@@ -53,7 +71,6 @@ class DatabaseSeeder extends Seeder
         $course->date_start = '2022-04-24';
         $course->date_end = '2022-05-24';
         $course->active = 1;
-
         $course->save();
 
 
@@ -61,14 +78,12 @@ class DatabaseSeeder extends Seeder
         $schedule->time_start = '12:30:00';
         $schedule->time_end = '13:30:00';
         $schedule->day = '2022-04-24';
-
         $schedule->save();
 
         $schedule2 = new Schedule();
         $schedule2->time_start = '13:30:00';
         $schedule2->time_end = '14:30:00';
         $schedule2->day = '2022-04-25';
-
         $schedule2->save();
 
 
