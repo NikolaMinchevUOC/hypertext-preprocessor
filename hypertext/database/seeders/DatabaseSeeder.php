@@ -11,6 +11,7 @@ use App\Models\Schedule;
 use App\Models\Work;
 use App\Models\Exam;
 use App\Models\Percentage;
+use App\Models\Notification;
 
 class DatabaseSeeder extends Seeder
 {
@@ -117,5 +118,14 @@ class DatabaseSeeder extends Seeder
         $percentage->continuous_assessment = 80;
         $percentage->exams = 20;
         $percentage->save();
+
+
+        $notification = new Notification;
+        $notification->id_student = 2;
+        $notification->work = 1;
+        $notification->exam = 1;
+        $notification->continuous_assessment = 1;
+        $notification->final_note = 1;
+        $notification->save();
     }
 }

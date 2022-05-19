@@ -82,9 +82,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="shopping-cart"></span>
-                                Notificaciones
+                            <a class="nav-link" href="/admin-notification">
+                                <span data-feather="file"></span>
+                                Notifications
                             </a>
                         </li>
                     </ul>

@@ -11,6 +11,7 @@ use App\Http\Controllers\EnrolmentController;
 use App\Http\Controllers\WorkController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\PercentageController;
+use App\Http\Controllers\NotificationController;
 
 Route::get('/', function () {
     return view('home');
@@ -244,3 +245,32 @@ Route::get('/admin-percentage/edit/{id}', [PercentageController::class, 'editPer
 Route::post('/admin-percentage/update/{id}', [PercentageController::class, 'updatePercentage'])
     ->middleware('auth.admin')
     ->name('adminPercentage.updatePercentage');
+
+
+// ************************* NotificationController
+
+Route::resource('examNotification', 'App\Http\Controllers\NotificationController');
+
+Route::get('/admin-notification', [NotificationController::class, 'getNotification'])
+    ->middleware('auth.admin')
+    ->name('adminNotification.getNotification');
+
+Route::get('/admin-notification/create', [NotificationController::class, 'createNotification'])
+    ->middleware('auth.admin')
+    ->name('createNotification');
+
+
+Route::post('/admin-notification/create', [NotificationController::class, 'storeNotification'])
+    ->name('adminNotification.storeNotification');
+
+Route::post('/admin-notification/destroy', [NotificationController::class, 'destroy'])
+    ->middleware('auth.admin')
+    ->name('adminNotification.destroy');
+
+Route::get('/admin-notification/edit/{id}', [NotificationController::class, 'editNotification'])
+    ->middleware('auth.admin')
+    ->name('adminNotification.editNotification');
+
+Route::post('/admin-notification/update/{id}', [NotificationController::class, 'updateNotification'])
+    ->middleware('auth.admin')
+    ->name('adminNotification.updateNotification');

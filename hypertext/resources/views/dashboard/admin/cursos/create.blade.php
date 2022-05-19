@@ -49,10 +49,11 @@
                         <div class="form-group row">
                             <label for="active" class="col-md-4 col-form-label text-md-right">¿Activo?</label>
 
-                            <div class="col-md-6">
-                              <input class="form-check-input" type="checkbox" checked name="active" id="active">
+                            <div class="col-md-4 col-form-label text-md-left">
+                                <input class="form-check-input" type="checkbox" checked name="active" id="active">
                             </div>
                         </div>
+
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
