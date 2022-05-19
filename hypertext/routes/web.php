@@ -9,6 +9,7 @@ use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\ClasesController;
 use App\Http\Controllers\EnrolmentController;
 use App\Http\Controllers\WorkController;
+use App\Http\Controllers\ExamController;
 
 Route::get('/', function () {
     return view('home');
@@ -184,3 +185,32 @@ Route::get('/admin-work/edit/{id}', [WorkController::class, 'editWork'])
 Route::post('/admin-work/update/{id}', [WorkController::class, 'updateWork'])
     ->middleware('auth.admin')
     ->name('adminWork.updateWork');
+
+
+// ************************* Exam
+
+Route::resource('examController', 'App\Http\Controllers\ExamController');
+
+Route::get('/admin-exams', [ExamController::class, 'getExams'])
+    ->middleware('auth.admin')
+    ->name('adminExam.getExams');
+
+Route::get('/admin-exam/create', [ExamController::class, 'createExam'])
+    ->middleware('auth.admin')
+    ->name('createExam');
+
+
+Route::post('/admin-exam/create', [ExamController::class, 'storeExam'])
+    ->name('adminExam.storeExam');
+
+Route::post('/admin-exam/destroy', [ExamController::class, 'destroy'])
+    ->middleware('auth.admin')
+    ->name('adminExam.destroy');
+
+Route::get('/admin-exam/edit/{id}', [ExamController::class, 'editExam'])
+    ->middleware('auth.admin')
+    ->name('adminExam.editExam');
+
+Route::post('/admin-exam/update/{id}', [ExamController::class, 'updateExam'])
+    ->middleware('auth.admin')
+    ->name('adminExam.updateExam');

@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('title', 'Edit Course')
+@section('title', 'Login')
 
 @section('content')
 
@@ -8,21 +8,22 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Modificar de Work</div>
+                <div class="card-header">Creación de Exam</div>
 
                 <div class="card-body">
 
-                    <form method="POST" action="/admin-work/update/{{$work->id_work}}">
+
+                    <form method="POST" action="/admin-exam/create">
 
                         @csrf
 
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">Nombre del trabajo</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Nombre del examen</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" required autofocus value="{{$work->name}}">
+                                <input id="name" type="text" class="form-control" name="name" required autofocus>
                             </div>
                         </div>
 
@@ -57,7 +58,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">Nota</label>
 
                             <div class="col-md-6">
-                                <input id="mark" type="number" step="any" class="form-control" name="mark" required autofocus value="{{$work->mark}}">
+                                <input id="mark" type="number" step="any" class="form-control" name="mark" required autofocus>
                             </div>
                         </div>
 

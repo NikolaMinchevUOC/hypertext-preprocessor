@@ -9,6 +9,7 @@ use App\Models\Course;
 use App\Models\Enrollment;
 use App\Models\Schedule;
 use App\Models\Work;
+use App\Models\Exam;
 
 class DatabaseSeeder extends Seeder
 {
@@ -101,5 +102,12 @@ class DatabaseSeeder extends Seeder
         $work->name = "Primera entrega PHP";
         $work->mark = 9.6;
         $work->save();
+
+        $exam = new Exam;
+        $exam->id_class = 1;
+        $exam->id_student = 2;
+        $exam->name = "Final exam PHP";
+        $exam->mark = 9.6;
+        $exam->save();
     }
 }

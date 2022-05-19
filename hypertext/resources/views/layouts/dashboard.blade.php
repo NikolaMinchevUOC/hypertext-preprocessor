@@ -68,6 +68,13 @@
                                 Works
                             </a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin-exams">
+                                <span data-feather="file"></span>
+                                Exams
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
                                 <span data-feather="shopping-cart"></span>
