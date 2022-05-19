@@ -32,7 +32,7 @@
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="/">
+                            <a class="nav-link active" href="/admin">
                                 <span data-feather="home"></span>
                                 Dashboard Admin <span class="sr-only">(current)</span>
                             </a>
@@ -91,7 +91,7 @@
                 </div>
             </nav>
 
-            @elseif (Auth::user()->role === "professor")
+            @elseif (Auth::user()->role === "profesor")
             <div class="container-fluid">
                 <div class="row">
                     <nav class="col-md-2 d-none d-md-block bg-light sidebar">
@@ -126,15 +126,15 @@
                                 <div class="sidebar-sticky">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link active" href="#">
+                                            <a class="nav-link active" href="/student">
                                                 <span data-feather="home"></span>
                                                 Dashboard Student <span class="sr-only">(current)</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">
+                                            <a class="nav-link" href="/student-enrolments">
                                                 <span data-feather="file"></span>
-                                                Cursos
+                                                Enrollments
                                             </a>
                                         </li>
                                         <li class="nav-item">

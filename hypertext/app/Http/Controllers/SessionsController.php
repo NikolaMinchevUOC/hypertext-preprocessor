@@ -27,6 +27,8 @@ class SessionsController extends Controller
                 return redirect()->route('admin.index');
             } elseif (auth()->user()->role == 'profesor') {
                 return redirect()->route('profesor.index');
+            } else if (auth()->user()->role == 'student') {
+                return redirect()->route('student.index');
             } else {
                 return redirect()->to('/');
             }

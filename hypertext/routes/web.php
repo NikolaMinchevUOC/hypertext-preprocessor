@@ -12,6 +12,7 @@ use App\Http\Controllers\WorkController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\PercentageController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\StudentController;
 
 Route::get('/', function () {
     return view('home');
@@ -42,6 +43,10 @@ Route::get('/logout', [SessionsController::class, 'destroy'])
 Route::get('/admin', [AdminController::class, 'index'])
     ->middleware('auth.admin')
     ->name('admin.index');
+
+Route::get('/student', [StudentController::class, 'index'])
+    ->middleware('auth.student')
+    ->name('student.index');
 
 Route::get('/profesor', [ProfesorController::class, 'index'])
     ->middleware('auth.profesor')
@@ -129,7 +134,7 @@ Route::post('/admin-clases/update/{id}', [ClasesController::class, 'updateClases
 
 
 
-// ************************* Enrolments
+// ************************* ADMIN Enrolments
 
 Route::resource('enrolmentsController', 'App\Http\Controllers\EnrolmentController');
 
@@ -149,11 +154,28 @@ Route::post('/admin-enrolment/destroy', [EnrolmentController::class, 'destroy'])
     ->middleware('auth.admin')
     ->name('adminEnrollment.destroy');
 
-
-
 Route::get('/admin-enrolment/edit/{id}', [EnrolmentController::class, 'editEnrolment'])
     ->middleware('auth.admin')
     ->name('adminEnrollment.editEnrolment');
+
+    // ************************* STUDENT Enrolments
+
+Route::resource('enrolmentsController', 'App\Http\Controllers\EnrolmentController');
+
+Route::get('/student-enrolments', [EnrolmentController::class, 'getStudentEnrolments'])
+    ->middleware('auth.student')
+    ->name('adminEnrollment.getEnrolments');
+
+Route::get('/student-enrolment/create', [EnrolmentController::class, 'createStudentEnrolment'])
+    ->middleware('auth.student')
+    ->name('adminEnrollment.createEnrolment');
+
+Route::post('/student-enrolment/create', [EnrolmentController::class, 'storeStudentEnrolment'])
+    ->name('adminEnrollment.storeEnrolment');
+
+Route::get('/student-enrolment/edit/{id}', [EnrolmentController::class, 'editStudentEnrolment'])
+    ->middleware('auth.student')
+    ->name('studentEnrollment.editEnrolment');
 
 // Route::post('/admin-enrolment/update/{id}', [EnrolmentController::class, 'updateEnrolment'])
 //     ->middleware('auth.admin')
