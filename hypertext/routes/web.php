@@ -10,6 +10,7 @@ use App\Http\Controllers\ClasesController;
 use App\Http\Controllers\EnrolmentController;
 use App\Http\Controllers\WorkController;
 use App\Http\Controllers\ExamController;
+use App\Http\Controllers\PercentageController;
 
 Route::get('/', function () {
     return view('home');
@@ -214,3 +215,32 @@ Route::get('/admin-exam/edit/{id}', [ExamController::class, 'editExam'])
 Route::post('/admin-exam/update/{id}', [ExamController::class, 'updateExam'])
     ->middleware('auth.admin')
     ->name('adminExam.updateExam');
+
+
+// ************************* Percentage
+
+Route::resource('examPercentage', 'App\Http\Controllers\PercentageController');
+
+Route::get('/admin-percentage', [PercentageController::class, 'getPercentage'])
+    ->middleware('auth.admin')
+    ->name('adminPercentage.getPercentage');
+
+Route::get('/admin-percentage/create', [PercentageController::class, 'createPercentage'])
+    ->middleware('auth.admin')
+    ->name('createPercentage');
+
+
+Route::post('/admin-percentage/create', [PercentageController::class, 'storePercentage'])
+    ->name('adminPercentage.storePercentage');
+
+Route::post('/admin-percentage/destroy', [PercentageController::class, 'destroy'])
+    ->middleware('auth.admin')
+    ->name('adminPercentage.destroy');
+
+Route::get('/admin-percentage/edit/{id}', [PercentageController::class, 'editPercentage'])
+    ->middleware('auth.admin')
+    ->name('adminPercentage.editPercentage');
+
+Route::post('/admin-percentage/update/{id}', [PercentageController::class, 'updatePercentage'])
+    ->middleware('auth.admin')
+    ->name('adminPercentage.updatePercentage');

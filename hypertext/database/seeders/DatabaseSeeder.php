@@ -10,6 +10,7 @@ use App\Models\Enrollment;
 use App\Models\Schedule;
 use App\Models\Work;
 use App\Models\Exam;
+use App\Models\Percentage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -109,5 +110,12 @@ class DatabaseSeeder extends Seeder
         $exam->name = "Final exam PHP";
         $exam->mark = 9.6;
         $exam->save();
+
+        $percentage = new Percentage;
+        $percentage->id_course = 1;
+        $percentage->id_class = 1;
+        $percentage->continuous_assessment = 80;
+        $percentage->exams = 20;
+        $percentage->save();
     }
 }

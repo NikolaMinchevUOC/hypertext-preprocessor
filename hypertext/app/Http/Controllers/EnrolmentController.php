@@ -47,6 +47,7 @@ class EnrolmentController extends Controller
             $enrollment->status = 1;
             $enrollment->save();
         }
+        
         return redirect('/admin-enrolments');
     }
 
