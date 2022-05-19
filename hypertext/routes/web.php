@@ -7,7 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfesorController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\ClasesController;
-
+use App\Http\Controllers\EnrolmentController;
 
 Route::get('/', function () {
     return view('home');
@@ -122,3 +122,35 @@ Route::get('/admin-clases/edit/{id}', [ClasesController::class, 'editClase'])
 Route::post('/admin-clases/update/{id}', [ClasesController::class, 'updateClases'])
     ->middleware('auth.admin')
     ->name('adminClases.updateClases');
+
+
+
+// ************************* Enrolments
+
+Route::resource('enrolmentsController', 'App\Http\Controllers\EnrolmentController');
+
+Route::get('/admin-enrolments', [EnrolmentController::class, 'getEnrolments'])
+    ->middleware('auth.admin')
+    ->name('adminEnrollment.getEnrolments');
+
+Route::get('/admin-enrolment/create', [EnrolmentController::class, 'createEnrolment'])
+    ->middleware('auth.admin')
+    ->name('adminEnrollment.createEnrolment');
+
+
+Route::post('/admin-enrolment/create', [EnrolmentController::class, 'storeEnrolment'])
+    ->name('adminEnrollment.storeEnrolment');
+
+Route::post('/admin-enrolment/destroy', [EnrolmentController::class, 'destroy'])
+    ->middleware('auth.admin')
+    ->name('adminEnrollment.destroy');
+
+
+
+Route::get('/admin-enrolment/edit/{id}', [EnrolmentController::class, 'editEnrolment'])
+    ->middleware('auth.admin')
+    ->name('adminEnrollment.editEnrolment');
+
+// Route::post('/admin-enrolment/update/{id}', [EnrolmentController::class, 'updateEnrolment'])
+//     ->middleware('auth.admin')
+//     ->name('adminEnrollment.updateEnrolment');

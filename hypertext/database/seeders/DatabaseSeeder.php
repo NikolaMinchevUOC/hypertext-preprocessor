@@ -6,6 +6,7 @@ use App\Models\Classes;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Course;
+use App\Models\Enrollment;
 use App\Models\Schedule;
 
 class DatabaseSeeder extends Seeder
@@ -86,5 +87,11 @@ class DatabaseSeeder extends Seeder
         $class2->name = 'PHP Advanced';
         $class2->color = "#333";
         $class2->save();
+
+        $enrolment = new Enrollment;
+        $enrolment->id_student = 2;
+        $enrolment->id_course = 1;
+        $enrolment->status = 1;
+        $enrolment->save();
     }
 }
