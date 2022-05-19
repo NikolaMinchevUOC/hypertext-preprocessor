@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfesorController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\ClasesController;
 use App\Http\Controllers\EnrolmentController;
+use App\Http\Controllers\WorkController;
 
 Route::get('/', function () {
     return view('home');
@@ -154,3 +155,32 @@ Route::get('/admin-enrolment/edit/{id}', [EnrolmentController::class, 'editEnrol
 // Route::post('/admin-enrolment/update/{id}', [EnrolmentController::class, 'updateEnrolment'])
 //     ->middleware('auth.admin')
 //     ->name('adminEnrollment.updateEnrolment');
+
+
+// ************************* Works
+
+Route::resource('workController', 'App\Http\Controllers\WorkController');
+
+Route::get('/admin-works', [WorkController::class, 'getWorks'])
+    ->middleware('auth.admin')
+    ->name('adminWork.getWorks');
+
+Route::get('/admin-work/create', [WorkController::class, 'createWork'])
+    ->middleware('auth.admin')
+    ->name('createWork');
+
+
+Route::post('/admin-work/create', [WorkController::class, 'storeWork'])
+    ->name('adminWork.storeWork');
+
+Route::post('/admin-work/destroy', [WorkController::class, 'destroy'])
+    ->middleware('auth.admin')
+    ->name('adminWork.destroy');
+
+Route::get('/admin-work/edit/{id}', [WorkController::class, 'editWork'])
+    ->middleware('auth.admin')
+    ->name('adminWork.editWork');
+
+Route::post('/admin-work/update/{id}', [WorkController::class, 'updateWork'])
+    ->middleware('auth.admin')
+    ->name('adminWork.updateWork');

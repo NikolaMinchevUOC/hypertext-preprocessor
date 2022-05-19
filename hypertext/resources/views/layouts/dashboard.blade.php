@@ -61,6 +61,13 @@
                                 Enrollments
                             </a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin-works">
+                                <span data-feather="file"></span>
+                                Works
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
                                 <span data-feather="shopping-cart"></span>

@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Course;
 use App\Models\Enrollment;
 use App\Models\Schedule;
+use App\Models\Work;
 
 class DatabaseSeeder extends Seeder
 {
@@ -93,5 +94,12 @@ class DatabaseSeeder extends Seeder
         $enrolment->id_course = 1;
         $enrolment->status = 1;
         $enrolment->save();
+
+        $work = new Work;
+        $work->id_class = 1;
+        $work->id_student = 2;
+        $work->name = "Primera entrega PHP";
+        $work->mark = 9.6;
+        $work->save();
     }
 }
