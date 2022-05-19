@@ -13,6 +13,7 @@ use App\Http\Controllers\ExamController;
 use App\Http\Controllers\PercentageController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('home');
@@ -158,7 +159,7 @@ Route::get('/admin-enrolment/edit/{id}', [EnrolmentController::class, 'editEnrol
     ->middleware('auth.admin')
     ->name('adminEnrollment.editEnrolment');
 
-    // ************************* STUDENT Enrolments
+// ************************* STUDENT Enrolments
 
 Route::resource('enrolmentsController', 'App\Http\Controllers\EnrolmentController');
 
@@ -296,3 +297,6 @@ Route::get('/admin-notification/edit/{id}', [NotificationController::class, 'edi
 Route::post('/admin-notification/update/{id}', [NotificationController::class, 'updateNotification'])
     ->middleware('auth.admin')
     ->name('adminNotification.updateNotification');
+
+Route::get('profile', [UserController::class, 'edit']);
+Route::patch('profile/{user}/update', [UserController::class, 'update']);

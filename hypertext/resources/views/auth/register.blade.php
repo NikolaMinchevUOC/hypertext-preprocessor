@@ -19,6 +19,18 @@
   </div>
   @enderror
 
+
+  <label for="inputSurname" class="sr-only">Apellido</label>
+  <input type="text" class="form-control" placeholder="Apellido" id="surname" name="surname">
+
+  <label for="inputTelephone" class="sr-only">Teléfono</label>
+  <input type="text" class="form-control" placeholder="Teléfono" id="telephone" name="telephone">
+
+  <label for="inputNIF" class="sr-only">NIF</label>
+  <input type="text" class="form-control" placeholder="NIF" id="nif" name="nif">
+
+  <hr>
+
   <label for="inputEmail" class="sr-only">Correo Electrónico</label>
   <input type="email" class="form-control" placeholder="Correo Electrónico" id="email" name="email">
 
