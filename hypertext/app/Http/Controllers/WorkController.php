@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Classes;
+use App\Models\Mensaje;
 use App\Models\Work;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class WorkController extends Controller
 {
@@ -29,6 +32,12 @@ class WorkController extends Controller
         $work->mark = $request->get('mark');
         $work->save();
 
+        $clase = Classes::where('id_class', $request->get('clase'))->first();
+        Mensaje::create([
+            'id_student' => $request->get('student'),
+            'text' => 'El Trabajo "' . $request->get('name') . '" de la clase "' . $clase->name . '" ha sido creado',
+        ]);
+
         return redirect('/admin-works');
     }
 
@@ -48,6 +57,13 @@ class WorkController extends Controller
         $work->id_student = $request->get('student');
         $work->mark = $request->get('mark');
         $work->save();
+
+
+        $clase = Classes::where('id_class', $request->get('clase'))->first();
+        Mensaje::create([
+            'id_student' => $request->get('student'),
+            'text' => 'El Trabajo "' . $request->get('name') . '" de la clase "' . $clase->name . '" ha sido actualizado ',
+        ]);
 
         return redirect('/admin-works');
     }

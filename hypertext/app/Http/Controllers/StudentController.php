@@ -39,4 +39,10 @@ class StudentController extends Controller
         return view('dashboard.student.exams')->with('exams', $exams);
     }
 
+    public function studentShowMensajes()
+    {
+        $id_student = Auth::id();
+        $mensajes = DB::table('mensajes')->where('id_student', '=', $id_student)->get();
+        return view('dashboard.student.mensajes')->with('mensajes', $mensajes);
+    }
 }

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Classes;
 use App\Models\Exam;
+use App\Models\Mensaje;
 use Illuminate\Http\Request;
 
 class ProfesorExamController extends Controller
@@ -31,6 +33,12 @@ class ProfesorExamController extends Controller
         $exam->mark = $request->get('mark');
         $exam->save();
 
+        $clase = Classes::where('id_class', $request->get('clase'))->first();
+        Mensaje::create([
+            'id_student' => $request->get('student'),
+            'text' => 'El Exam "' . $request->get('name') . '" de la clase "' . $clase->name . '" ha sido creado ',
+        ]);
+
         echo '<script type="text/javascript">window.location.reload(history.go(-2));</script>';
     }
 
@@ -50,6 +58,12 @@ class ProfesorExamController extends Controller
         $exam->id_student = $request->get('student');
         $exam->mark = $request->get('mark');
         $exam->save();
+
+        $clase = Classes::where('id_class', $request->get('clase'))->first();
+        Mensaje::create([
+            'id_student' => $request->get('student'),
+            'text' => 'El Exam "' . $request->get('name') . '" de la clase "' . $clase->name . '" ha sido actualizado ',
+        ]);
 
         echo '<script type="text/javascript">window.location.reload(history.go(-2));</script>';
     }

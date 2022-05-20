@@ -10,6 +10,7 @@ use App\Models\Enrollment;
 use App\Models\Schedule;
 use App\Models\Work;
 use App\Models\Exam;
+use App\Models\Mensaje;
 use App\Models\Percentage;
 use App\Models\Notification;
 
@@ -171,5 +172,11 @@ class DatabaseSeeder extends Seeder
         $notification->continuous_assessment = 1;
         $notification->final_note = 1;
         $notification->save();
+
+        $mensaje = new Mensaje;
+        $mensaje->id_student = 2;
+        $mensaje->text = "Mensaje de prueba";
+
+        $mensaje->save();
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Classes;
+use App\Models\Mensaje;
 use App\Models\Work;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -30,6 +32,13 @@ class ProfesorWorkController extends Controller
         $work->id_student = $request->get('student');
         $work->mark = $request->get('mark');
         $work->save();
+
+        $clase = Classes::where('id_class', $request->get('clase'))->first();
+        Mensaje::create([
+            'id_student' => $request->get('student'),
+            'text' => 'El Trabajo "' . $request->get('name') . '" de la clase "' . $clase->name . '" ha sido creado',
+        ]);
+
         echo '<script type="text/javascript">window.location.reload(history.go(-2));</script>';
     }
 
@@ -49,6 +58,12 @@ class ProfesorWorkController extends Controller
         $work->id_student = $request->get('student');
         $work->mark = $request->get('mark');
         $work->save();
+
+        $clase = Classes::where('id_class', $request->get('clase'))->first();
+        Mensaje::create([
+            'id_student' => $request->get('student'),
+            'text' => 'El Trabajo "' . $request->get('name') . '" de la clase "' . $clase->name . '" ha sido actualizado ',
+        ]);
 
         echo '<script type="text/javascript">window.location.reload(history.go(-2));</script>';
     }
