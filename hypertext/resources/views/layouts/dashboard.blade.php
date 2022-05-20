@@ -12,6 +12,7 @@
 
     <!-- Custom styles for this template -->
     <link href="https://getbootstrap.com/docs/4.0/examples/dashboard/dashboard.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -133,7 +134,7 @@
                                         </svg> Perfil
                                     </a>
                                 </li>
-                            </ul>        
+                            </ul>
                         </div>
                     </nav>
 
@@ -153,6 +154,13 @@
                                             <a class="nav-link" href="/student-enrolments">
                                                 <span data-feather="file"></span>
                                                 Enrollments
+                                            </a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/student-mensajes">
+                                                <span data-feather="file"></span>
+                                                Mensajes
                                             </a>
                                         </li>
                                         <li class="nav-item">
@@ -176,7 +184,7 @@
                                                 </svg> Perfil
                                             </a>
                                         </li>
-                                    </ul>                
+                                    </ul>
                                 </div>
                             </nav>
                             @endif

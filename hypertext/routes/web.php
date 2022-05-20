@@ -14,6 +14,8 @@ use App\Http\Controllers\PercentageController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfesorWorkController;
+use App\Http\Controllers\ProfesorExamController;
 
 Route::get('/', function () {
     return view('home');
@@ -324,6 +326,11 @@ Route::patch('profile/{user}/update', [UserController::class, 'update']);
 
 Route::resource('studentController', 'App\Http\Controllers\StudentController');
 
+
+Route::get('/student-mensajes', [StudentController::class, 'studentShowMensajes'])
+    ->middleware('auth.student')
+    ->name('studentClase.studentShowMensajes');
+
 // Route::get('/student-clases', [StudentController::class, 'studentShowClases'])
 //     ->middleware('auth.student')
 //     ->name('studentShowClases.studentShowClases');
@@ -361,3 +368,66 @@ Route::get('/profesor-clases/{id}', [ProfesorController::class, 'profesorShowCla
 Route::post('/profesor-percentage/update/{id}', [ProfesorController::class, 'updatePercentage'])
     ->middleware('auth.profesor')
     ->name('profesorPorcentage.updatePercentage');
+
+
+
+Route::get('/profesor-students/{id_course}/{id_clase}', [ProfesorController::class, 'profesorShowStudents'])
+    ->middleware('auth.profesor')
+    ->name('profesorStudents.showStudents');
+
+
+Route::get('/profesor-trabajos/{id_course}/{id_clase}/{id_student}', [ProfesorController::class, 'profesorShowTrabajos'])
+    ->middleware('auth.profesor')
+    ->name('profesorTrabajos.profesorShowTrabajos');
+
+Route::get('/profesor-exams/{id_course}/{id_clase}/{id_student}', [ProfesorController::class, 'profesorShowExams'])
+    ->middleware('auth.profesor')
+    ->name('profesorTrabajos.profesorShowExams');
+/********************* PROFESOR WORKS CRUD ******************************/
+Route::resource('profesorWorkController', 'App\Http\Controllers\ProfesorWorkController');
+
+
+Route::get('/profesor-work/create', [ProfesorWorkController::class, 'createWork1'])
+    ->middleware('auth.profesor');
+
+
+
+Route::post('/profesor-work/create', [ProfesorWorkController::class, 'storeWork1'])
+    ->middleware('auth.profesor');
+
+
+Route::post('/profesor-work/destroy', [ProfesorWorkController::class, 'destroy'])
+    ->middleware('auth.profesor');
+
+
+Route::get('/profesor-work/edit/{id}', [ProfesorWorkController::class, 'editWork1'])
+    ->middleware('auth.profesor');
+
+
+Route::post('/profesor-work/update/{id}', [ProfesorWorkController::class, 'updateWork1'])
+    ->middleware('auth.profesor');
+
+/********************* PROFESOR EXAM CRUD ******************************/
+Route::resource('profesorExamController', 'App\Http\Controllers\ProfesorExamController');
+
+
+Route::get('/profesor-exam/create', [ProfesorExamController::class, 'createExam1'])
+    ->middleware('auth.profesor')
+    ->name('createExam1');
+
+
+Route::post('/profesor-exam/create', [ProfesorExamController::class, 'storeExam1'])
+    ->middleware('auth.profesor')
+    ->name('profesorExam.storeExam1');
+
+Route::post('/profesor-exam/destroy', [ProfesorExamController::class, 'destroy'])
+    ->middleware('auth.profesor')
+    ->name('profesorExam.destroy');
+
+Route::get('/profesor-exam/edit/{id}', [ProfesorExamController::class, 'editExam1'])
+    ->middleware('auth.profesor')
+    ->name('profesorExam.editExam1');
+
+Route::post('/profesor-exam/update/{id}', [ProfesorExamController::class, 'updateExam1'])
+    ->middleware('auth.profesor')
+    ->name('profesorExam.updateExam1');

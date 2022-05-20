@@ -7,20 +7,23 @@ use App\Models\Exam;
 use App\Models\Mensaje;
 use Illuminate\Http\Request;
 
-class ExamController extends Controller
+class ProfesorExamController extends Controller
 {
-    public function getExams()
+
+
+    public function index()
     {
-        $exams = Exam::all();
-        return view('dashboard.admin.exam.index')->with('exams', $exams);
+
+        //return 'Admin';
+        return view('auth.profesor');
     }
 
-    public function createExam()
+    public function createExam1()
     {
-        return view('dashboard.admin.exam.create');
+        return view('dashboard.profesor.exam.create');
     }
 
-    public function storeExam(Request $request)
+    public function storeExam1(Request $request)
     {
 
         $exam = new Exam();
@@ -36,17 +39,17 @@ class ExamController extends Controller
             'text' => 'El Exam "' . $request->get('name') . '" de la clase "' . $clase->name . '" ha sido creado ',
         ]);
 
-        return redirect('/admin-exams');
+        echo '<script type="text/javascript">window.location.reload(history.go(-2));</script>';
     }
 
-    public function editExam($id)
+    public function editExam1($id)
     {
         $exam = Exam::where('id_exam', $id)->first();
-        return view('dashboard.admin.exam.edit')->with('exam', $exam);
+        return view('dashboard.profesor.exam.edit')->with('exam', $exam);
     }
 
 
-    public function updateExam(Request $request, $id)
+    public function updateExam1(Request $request, $id)
     {
 
         $exam = Exam::where('id_exam', $id)->first();
@@ -62,7 +65,7 @@ class ExamController extends Controller
             'text' => 'El Exam "' . $request->get('name') . '" de la clase "' . $clase->name . '" ha sido actualizado ',
         ]);
 
-        return redirect('/admin-exams');
+        echo '<script type="text/javascript">window.location.reload(history.go(-2));</script>';
     }
 
 
@@ -72,6 +75,7 @@ class ExamController extends Controller
         $exam = Exam::find($id);
         $exam->delete();
 
-        return redirect('admin-exams');
+        return redirect()->back();
     }
 }
+

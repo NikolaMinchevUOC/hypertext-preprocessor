@@ -6,23 +6,24 @@ use App\Models\Classes;
 use App\Models\Mensaje;
 use App\Models\Work;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
-class WorkController extends Controller
+class ProfesorWorkController extends Controller
 {
 
-    public function getWorks()
+    public function index()
     {
-        $works = Work::all();
-        return view('dashboard.admin.work.index')->with('works', $works);
+
+        //return 'Admin';
+        return view('auth.profesor');
     }
 
-    public function createWork()
+    public function createWork1()
     {
-        return view('dashboard.admin.work.create');
+        return view('dashboard.profesor.work.create');
     }
 
-    public function storeWork(Request $request)
+    public function storeWork1(Request $request)
     {
 
         $work = new Work();
@@ -38,17 +39,17 @@ class WorkController extends Controller
             'text' => 'El Trabajo "' . $request->get('name') . '" de la clase "' . $clase->name . '" ha sido creado',
         ]);
 
-        return redirect('/admin-works');
+        echo '<script type="text/javascript">window.location.reload(history.go(-2));</script>';
     }
 
-    public function editWork($id)
+    public function editWork1($id)
     {
         $work = Work::where('id_work', $id)->first();
-        return view('dashboard.admin.work.edit')->with('work', $work);
+        return view('dashboard.profesor.work.edit')->with('work', $work);
     }
 
 
-    public function updateWork(Request $request, $id)
+    public function updateWork1(Request $request, $id)
     {
 
         $work = Work::where('id_work', $id)->first();
@@ -58,14 +59,13 @@ class WorkController extends Controller
         $work->mark = $request->get('mark');
         $work->save();
 
-
         $clase = Classes::where('id_class', $request->get('clase'))->first();
         Mensaje::create([
             'id_student' => $request->get('student'),
             'text' => 'El Trabajo "' . $request->get('name') . '" de la clase "' . $clase->name . '" ha sido actualizado ',
         ]);
 
-        return redirect('/admin-works');
+        echo '<script type="text/javascript">window.location.reload(history.go(-2));</script>';
     }
 
 
@@ -75,6 +75,6 @@ class WorkController extends Controller
         $course = Work::find($id);
         $course->delete();
 
-        return redirect('admin-works');
+        return redirect()->back();
     }
 }
