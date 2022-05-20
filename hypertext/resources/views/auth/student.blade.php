@@ -10,7 +10,7 @@ $id = Illuminate\Support\Facades\Auth::id();
 $student = \App\Models\User::where('id', $id)->first();
 $enrolments = DB::table('enrollments')->where('id_student', '=', $id)->where('status', '=', 1)->get();
 @endphp
-<h1>Daschboard de {{$student->name}}</h1>
+<h1>Dashboard de {{$student->name}}</h1>
 <div class="block mx-auto  p-8 bg-white  border border-gray-200
 rounded-lg shadow-lg">
 
@@ -19,7 +19,7 @@ rounded-lg shadow-lg">
         <div class="row-span-3 ...">
         </div>
         <div class="col-span-2 ...">
-            <h1 class="text-3xl text-center font-bold">Courses</h1>
+            <h2 class="text-3xl text-center font-bold">Cursos a los que estas apuntado</h2>
         </div>
         <div class="row-span-2 col-span-2 ...">
 
@@ -46,7 +46,7 @@ rounded-lg shadow-lg">
                         <td>{{$curso->date_start}}</td>
                         <td>{{$curso->date_end}}</td>
                         <td>
-                            <a href="/admin-courses/edit/{{$curso->id_course}}" class="btn btn-info">Editar</a>
+                            <a href="/student-clase/{{$curso->id_course}}" class="btn btn-info">Ver Clases</a>
                         </td>
                     </tr>
                     @endforeach

@@ -57,7 +57,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">Nota</label>
 
                             <div class="col-md-6">
-                                <input id="mark" type="number" step="any" class="form-control" name="mark" required autofocus value="{{$work->mark}}">
+                                <input id="mark" type="number" step="any" class="form-control" name="mark" value="{{$work->mark}}">
                             </div>
                         </div>
 

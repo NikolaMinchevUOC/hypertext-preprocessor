@@ -300,3 +300,30 @@ Route::post('/admin-notification/update/{id}', [NotificationController::class, '
 
 Route::get('profile', [UserController::class, 'edit']);
 Route::patch('profile/{user}/update', [UserController::class, 'update']);
+
+
+
+/************************ STUDENT VIEWS */
+
+Route::resource('studentController', 'App\Http\Controllers\StudentController');
+
+// Route::get('/student-clases', [StudentController::class, 'studentShowClases'])
+//     ->middleware('auth.student')
+//     ->name('studentShowClases.studentShowClases');
+
+// Route::get('/student-clase/{id}', [StudentController::class, 'studentShowClases'])
+//     ->middleware('auth.student')
+//     ->name('studentShowClases.studentShowClases');
+
+Route::get('/student-clase/{id}', [StudentController::class, 'studentShowClases'])
+    ->middleware('auth.student')
+    ->name('studentClase.studentShowClases');
+
+Route::get('/student-works/{id}', [StudentController::class, 'studentShowWorks'])
+    ->middleware('auth.student')
+    ->name('studentWorks.studentShowWorks');
+
+
+Route::get('/student-exams/{id}', [StudentController::class, 'studentShowExams'])
+    ->middleware('auth.student')
+    ->name('studentExams.studentShowExams');
