@@ -14,6 +14,7 @@ use App\Http\Controllers\PercentageController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfesorWorkController;
 
 Route::get('/', function () {
     return view('home');
@@ -346,3 +347,39 @@ Route::get('/profesor-clases/{id}', [ProfesorController::class, 'profesorShowCla
 Route::post('/profesor-percentage/update/{id}', [ProfesorController::class, 'updatePercentage'])
     ->middleware('auth.profesor')
     ->name('profesorPorcentage.updatePercentage');
+
+
+
+Route::get('/profesor-students/{id_course}/{id_clase}', [ProfesorController::class, 'profesorShowStudents'])
+    ->middleware('auth.profesor')
+    ->name('profesorStudents.showStudents');
+
+
+Route::get('/profesor-trabajos/{id_course}/{id_clase}/{id_student}', [ProfesorController::class, 'profesorShowTrabajos'])
+    ->middleware('auth.profesor')
+    ->name('profesorTrabajos.profesorShowTrabajos');
+
+
+/********************* PROFESOR WORKS CRUD ******************************/
+Route::resource('profesorWorkController', 'App\Http\Controllers\ProfesorWorkController');
+
+
+Route::get('/profesor-work/create', [ProfesorWorkController::class, 'createWork1'])
+    ->middleware('auth.profesor');
+
+
+
+Route::post('/profesor-work/create', [ProfesorWorkController::class, 'storeWork1'])
+    ->middleware('auth.profesor');
+
+
+Route::post('/profesor-work/destroy', [ProfesorWorkController::class, 'destroy'])
+    ->middleware('auth.profesor');
+
+
+Route::get('/profesor-work/edit/{id}', [ProfesorWorkController::class, 'editWork1'])
+    ->middleware('auth.profesor');
+
+
+Route::post('/profesor-work/update/{id}', [ProfesorWorkController::class, 'updateWork1'])
+    ->middleware('auth.profesor');

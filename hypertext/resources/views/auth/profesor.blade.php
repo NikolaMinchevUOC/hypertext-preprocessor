@@ -55,6 +55,7 @@ rounded-lg shadow-lg">
                     @endforeach
                 </tbody>
             </table>
+            
         </div>
     </div>
 </div>
