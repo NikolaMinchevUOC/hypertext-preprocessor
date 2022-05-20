@@ -300,6 +300,21 @@ Route::post('/admin-notification/update/{id}', [NotificationController::class, '
     ->middleware('auth.admin')
     ->name('adminNotification.updateNotification');
 
+
+
+Route::get('/student-notification', [NotificationController::class, 'getNotificationStudent'])
+    ->middleware('auth.student')
+    ->name('studentNotification.getNotificationStudent');
+
+
+Route::post('/student-notification/update/', [NotificationController::class, 'updateNotificationStudent'])
+    ->middleware('auth.student')
+    ->name('studentNotification.updateNotificationStudent');
+
+
+// ************************* EDIT PROFILE CONTROLLER
+
+
 Route::get('profile', [UserController::class, 'edit']);
 Route::patch('profile/{user}/update', [UserController::class, 'update']);
 
