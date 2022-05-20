@@ -15,12 +15,13 @@ class CreateNotificationsTable extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id('id_notification');
-            $table->integer('id_student');
+            $table->unsignedBigInteger('id_student');
             $table->integer('work');
             $table->integer('exam');
             $table->integer('continuous_assessment');
             $table->integer('final_note');
             $table->timestamps();
+            $table->foreign('id_student')->references('id')->on('users');
         });
     }
 

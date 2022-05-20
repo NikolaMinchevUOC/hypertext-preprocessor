@@ -49,6 +49,8 @@ Route::get('/student', [StudentController::class, 'index'])
     ->middleware('auth.student')
     ->name('student.index');
 
+
+
 Route::get('/profesor', [ProfesorController::class, 'index'])
     ->middleware('auth.profesor')
     ->name('profesor.index');
@@ -327,3 +329,20 @@ Route::get('/student-works/{id}', [StudentController::class, 'studentShowWorks']
 Route::get('/student-exams/{id}', [StudentController::class, 'studentShowExams'])
     ->middleware('auth.student')
     ->name('studentExams.studentShowExams');
+
+
+
+/************************ PROFESOR VIEWS */
+Route::get('/profesor-clase-porcentages/{id_course}/{id_clase}', [ProfesorController::class, 'modificarPorcentage'])
+    ->middleware('auth.profesor')
+    ->name('profesorPorcentage.modificarPorcentage');
+
+
+Route::get('/profesor-clases/{id}', [ProfesorController::class, 'profesorShowClases'])
+    ->middleware('auth.profesor')
+    ->name('profesorClases.profesorShowClases');
+
+
+Route::post('/profesor-percentage/update/{id}', [ProfesorController::class, 'updatePercentage'])
+    ->middleware('auth.profesor')
+    ->name('profesorPorcentage.updatePercentage');

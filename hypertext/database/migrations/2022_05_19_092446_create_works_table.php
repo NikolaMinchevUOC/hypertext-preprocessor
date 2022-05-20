@@ -15,11 +15,14 @@ class CreateWorksTable extends Migration
     {
         Schema::create('works', function (Blueprint $table) {
             $table->id('id_work');
-            $table->integer('id_class');
-            $table->integer('id_student');
+            $table->unsignedBigInteger('id_class');
+            $table->unsignedBigInteger('id_student');
             $table->string('name');
             $table->float('mark', 10, 2);
             $table->timestamps();
+
+            $table->foreign('id_class')->references('id_class')->on('classes');
+            $table->foreign('id_student')->references('id')->on('users');
         });
     }
 

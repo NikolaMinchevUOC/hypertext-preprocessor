@@ -24,8 +24,8 @@ class DatabaseSeeder extends Seeder
     {
 
         $user = new User;
-        $user->name = 'Administrador';
-        $user->surname = 'UOC';
+        $user->name = 'Paco Administrador';
+        $user->surname = 'Perez';
         $user->telephone = '+34656560945';
         $user->nif = '56566550O';
         $user->email = 'admin@gmail.com';
@@ -56,8 +56,8 @@ class DatabaseSeeder extends Seeder
 
 
         $user3 = new User;
-        $user3->name = 'Profesor';
-        $user3->surname = 'UOC';
+        $user3->name = 'Mark Profesor';
+        $user3->surname = 'Gomez';
         $user3->telephone = '+34656562214';
         $user3->nif = '10454545L';
         $user3->email = 'profesor@gmail.com';
@@ -91,7 +91,7 @@ class DatabaseSeeder extends Seeder
 
 
         $class = new Classes;
-        $class->id_teacher = 1;
+        $class->id_teacher = 4;
         $class->id_course = 1;
         $class->id_schedule = 1;
         $class->name = 'Intro to PHP';
@@ -100,7 +100,7 @@ class DatabaseSeeder extends Seeder
 
 
         $class2 = new Classes;
-        $class2->id_teacher = 1;
+        $class2->id_teacher = 4;
         $class2->id_course = 1;
         $class2->id_schedule = 2;
         $class2->name = 'PHP Advanced';
@@ -120,6 +120,28 @@ class DatabaseSeeder extends Seeder
         $work->mark = 9.6;
         $work->save();
 
+
+        $work3 = new Work;
+        $work3->id_class = 1;
+        $work3->id_student = 2;
+        $work3->name = "Segunda entrega PHP";
+        $work3->mark = 9;
+        $work3->save();
+
+        $work1 = new Work;
+        $work1->id_class = 2;
+        $work1->id_student = 2;
+        $work1->name = "Primera entrega PHP Advanced";
+        $work1->mark = 9.6;
+        $work1->save();
+
+        $work2 = new Work;
+        $work2->id_class = 2;
+        $work2->id_student = 2;
+        $work2->name = "Segunda entrega PHP Advanced";
+        $work2->mark = 8;
+        $work2->save();
+
         $exam = new Exam;
         $exam->id_class = 1;
         $exam->id_student = 2;
@@ -133,6 +155,13 @@ class DatabaseSeeder extends Seeder
         $percentage->continuous_assessment = 80;
         $percentage->exams = 20;
         $percentage->save();
+
+        $percentage1 = new Percentage;
+        $percentage1->id_course = 1;
+        $percentage1->id_class = 2;
+        $percentage1->continuous_assessment = 80;
+        $percentage1->exams = 20;
+        $percentage1->save();
 
 
         $notification = new Notification;

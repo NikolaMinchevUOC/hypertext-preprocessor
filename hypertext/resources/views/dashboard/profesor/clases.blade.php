@@ -25,9 +25,6 @@ rounded-lg shadow-lg">
                         <th scope="col">Name</th>
                         <th scope="col">Teacher</th>
                         <th scope="col">Course</th>
-                        <th scope="col">Nota EC</th>
-                        <th scope="col">Nota Exams</th>
-                        <th scope="col">Nota Final</th>
                         <th scope="col">Schedule day</th>
                         <th scope="col">Schedule start</th>
                         <th scope="col">Schedule end</th>
@@ -41,54 +38,12 @@ rounded-lg shadow-lg">
                     $teacher = \App\Models\User::where('id', $clase->id_teacher)->first();
                     $course = \App\Models\Course::where('id_course', $clase->id_course)->first();
                     $schedule = \App\Models\Schedule::where('id_schedule', $clase->id_schedule)->first();
-                    $porcentages =Illuminate\Support\Facades\DB::table('percentages')->where('id_course', '=', $course->id_course)->where('id_class', '=', $clase->id_class)->first();
-
-                    $sumaNotaEc = 0;
-                    $numeroDeNotasEc=0;
-                    $pesoNotaEC = $porcentages->continuous_assessment;
-                    $works = Illuminate\Support\Facades\DB::table('works')->where('id_class', '=', $clase->id_class)->where('id_student', '=', $id_studnet)->get();
-                    foreach ($works as $work) {
-                    $sumaNotaEc += $work->mark;
-                    $numeroDeNotasEc++;
-                    }
-
-                    if( $numeroDeNotasEc == 0){
-                    $numeroDeNotasEc =1;
-                    }
-                    $notaEc = (($sumaNotaEc /$numeroDeNotasEc) * $porcentages->continuous_assessment) / 100;
-                    $notaEcMedia = number_format(($sumaNotaEc /$numeroDeNotasEc),2) ;
-
-                    $sumaNotaExams = 0;
-                    $numeroDeNotasExams=1;
-                    $pesoNotaExams = $porcentages->exams;
-                    $exams = Illuminate\Support\Facades\DB::table('exams')->where('id_class', '=', $clase->id_class)->where('id_student', '=', $id_studnet)->get();
-                    foreach ($exams as $exam) {
-                    $sumaNotaExams += $exam->mark;
-
-                    if( $numeroDeNotasExams == 1){
-
-                    }else{
-                    $numeroDeNotasExams++;
-                    }
-
-                    }
-                    $notaExamsMedia =number_format(($sumaNotaExams /$numeroDeNotasExams),2) ;
-
-                    $notaExams =(($sumaNotaExams /$numeroDeNotasExams) * $porcentages->exams) / 100;
-                    $notaFinal= number_format($notaEc + $notaExams,2) ;
-
-
-
-
                     @endphp
                     <tr>
                         <td>{{$clase->id_class}}</td>
                         <td>{{$clase->name}}</td>
                         <td>{{$teacher->name}}</td>
                         <td>{{$course->name}}</td>
-                        <td>{{$notaEcMedia}} ({{$pesoNotaEC}}%)</td>
-                        <td>{{$notaExamsMedia}} ({{$pesoNotaExams}}%)</td>
-                        <td>{{$notaFinal}}</td>
                         <td>{{$schedule->day}}</td>
                         <td>{{$schedule->time_start}}</td>
                         <td>{{$schedule->time_end}}</td>
@@ -97,7 +52,7 @@ rounded-lg shadow-lg">
                         </td>
                         <td>
                             <a href="/student-works/{{$clase->id_class}}" class="btn btn-info">Ver Trabajos</a>
-                            <a href="/student-exams/{{$clase->id_class}}" class="btn btn-info">Ver Exams</a>
+                            <a href="/profesor-clase-porcentages/{{$course->id_course}}/{{$clase->id_class}}" class="btn btn-info">Modificar Porcentages</a>
                         </td>
                     </tr>
                     @endforeach

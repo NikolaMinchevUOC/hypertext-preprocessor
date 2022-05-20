@@ -40,12 +40,7 @@ rounded-lg shadow-lg">
                         <td>{{$clase->name}}</td>
                         <td>{{$student->name}}</td>
                         <td>{{$work->mark}}</td>
-                        <td>
-                            <form action="" method="POST">
-                                <a href="/student-work/{{$clase->id_class}}" class="btn btn-info">Ver Clases</a>
-                            </form>
 
-                        </td>
                     </tr>
                     @endforeach
                 </tbody>

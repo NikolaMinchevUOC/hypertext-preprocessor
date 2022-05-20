@@ -15,11 +15,15 @@ class CreatePercentagesTable extends Migration
     {
         Schema::create('percentages', function (Blueprint $table) {
             $table->id('id_percentage');
-            $table->integer('id_course');
-            $table->integer('id_class');
+            $table->unsignedBigInteger('id_course');
+            $table->unsignedBigInteger('id_class');
             $table->float('continuous_assessment', 10, 2);
             $table->float('exams', 10, 2);
             $table->timestamps();
+
+            $table->foreign('id_course')->references('id_course')->on('courses');
+            $table->foreign('id_class')->references('id_class')->on('classes');
+
         });
     }
 
