@@ -313,6 +313,10 @@ Route::post('/student-notification/update/', [NotificationController::class, 'up
     ->middleware('auth.student')
     ->name('studentNotification.updateNotificationStudent');
 
+Route::get('/student-calendar', [StudentController::class, 'getCalendar'])
+    ->middleware('auth.student')
+    ->name('studentCalendar.getCalendar');
+
 
 // ************************* EDIT PROFILE CONTROLLER
 
