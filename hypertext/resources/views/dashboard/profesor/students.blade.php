@@ -76,7 +76,7 @@ rounded-lg shadow-lg">
                         <td>{{$notaFinal}}</td>
                         <td>
                             <a href="/profesor-trabajos/{{$course->id_course}}/{{$clase->id_class}}/{{$student->id}}" class="btn btn-info">Ver Trabajos</a>
-                            <a href="/profesor-examenes/{{$course->id_course}}/{{$clase->id_class}}/{{$student->id}}" class="btn btn-info">Ver Examenes</a>
+                            <a href="/profesor-exams/{{$course->id_course}}/{{$clase->id_class}}/{{$student->id}}" class="btn btn-info">Ver Examenes</a>
                         </td>
                     </tr>
                     @endforeach

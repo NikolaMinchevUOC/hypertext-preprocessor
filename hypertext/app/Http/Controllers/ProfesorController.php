@@ -79,6 +79,20 @@ class ProfesorController extends Controller
         return view('dashboard.profesor.work.index')->with('clase', $clase)->with('course', $curso)->with('student', $student)->with('works', $works);
     }
 
+    public function profesorShowExams($id_course, $id_clase, $id_student)
+    {
+        $curso = Course::where('id_course', $id_course)->first();
+        $clase = Classes::where('id_class', $id_clase)->first();
+        $student = User::where('id', $id_student)->first();
+
+        $exams = DB::table('exams')
+            ->where('exams.id_class', $id_clase)
+            ->where('exams.id_student', $id_student)->select('exams.*')
+            ->get();
+
+        return view('dashboard.profesor.exam.index')->with('clase', $clase)->with('course', $curso)->with('student', $student)->with('exams', $exams);
+    }
+
 
     /********************* WORKS CRUD ****************************/
     public function storeWork(Request $request)

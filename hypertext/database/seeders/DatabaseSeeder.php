@@ -95,7 +95,7 @@ class DatabaseSeeder extends Seeder
         $class->id_course = 1;
         $class->id_schedule = 1;
         $class->name = 'Intro to PHP';
-        $class->color = "#888";
+        $class->color = "#eeff00";
         $class->save();
 
 
@@ -104,7 +104,7 @@ class DatabaseSeeder extends Seeder
         $class2->id_course = 1;
         $class2->id_schedule = 2;
         $class2->name = 'PHP Advanced';
-        $class2->color = "#333";
+        $class2->color = "#ff0000";
         $class2->save();
 
         $enrolment = new Enrollment;

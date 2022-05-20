@@ -15,6 +15,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfesorWorkController;
+use App\Http\Controllers\ProfesorExamController;
 
 Route::get('/', function () {
     return view('home');
@@ -359,7 +360,9 @@ Route::get('/profesor-trabajos/{id_course}/{id_clase}/{id_student}', [ProfesorCo
     ->middleware('auth.profesor')
     ->name('profesorTrabajos.profesorShowTrabajos');
 
-
+Route::get('/profesor-exams/{id_course}/{id_clase}/{id_student}', [ProfesorController::class, 'profesorShowExams'])
+    ->middleware('auth.profesor')
+    ->name('profesorTrabajos.profesorShowExams');
 /********************* PROFESOR WORKS CRUD ******************************/
 Route::resource('profesorWorkController', 'App\Http\Controllers\ProfesorWorkController');
 
@@ -383,3 +386,28 @@ Route::get('/profesor-work/edit/{id}', [ProfesorWorkController::class, 'editWork
 
 Route::post('/profesor-work/update/{id}', [ProfesorWorkController::class, 'updateWork1'])
     ->middleware('auth.profesor');
+
+/********************* PROFESOR EXAM CRUD ******************************/
+Route::resource('profesorExamController', 'App\Http\Controllers\ProfesorExamController');
+
+
+Route::get('/profesor-exam/create', [ProfesorExamController::class, 'createExam1'])
+    ->middleware('auth.profesor')
+    ->name('createExam1');
+
+
+Route::post('/profesor-exam/create', [ProfesorExamController::class, 'storeExam1'])
+    ->middleware('auth.profesor')
+    ->name('profesorExam.storeExam1');
+
+Route::post('/profesor-exam/destroy', [ProfesorExamController::class, 'destroy'])
+    ->middleware('auth.profesor')
+    ->name('profesorExam.destroy');
+
+Route::get('/profesor-exam/edit/{id}', [ProfesorExamController::class, 'editExam1'])
+    ->middleware('auth.profesor')
+    ->name('profesorExam.editExam1');
+
+Route::post('/profesor-exam/update/{id}', [ProfesorExamController::class, 'updateExam1'])
+    ->middleware('auth.profesor')
+    ->name('profesorExam.updateExam1');
