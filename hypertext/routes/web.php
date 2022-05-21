@@ -335,6 +335,8 @@ Route::get('/student-mensajes', [StudentController::class, 'studentShowMensajes'
     ->middleware('auth.student')
     ->name('studentClase.studentShowMensajes');
 
+
+
 // Route::get('/student-clases', [StudentController::class, 'studentShowClases'])
 //     ->middleware('auth.student')
 //     ->name('studentShowClases.studentShowClases');

@@ -43,9 +43,12 @@ rounded-lg shadow-lg">
                     $schedule = \App\Models\Schedule::where('id_schedule', $clase->id_schedule)->first();
                     $porcentages =Illuminate\Support\Facades\DB::table('percentages')->where('id_course', '=', $course->id_course)->where('id_class', '=', $clase->id_class)->first();
 
+                    $ca=(empty($porcentages)) ? 0 : $porcentages->continuous_assessment;
+                    $pa =(empty($porcentages)) ? 0 : $porcentages->exams;
+
                     $sumaNotaEc = 0;
                     $numeroDeNotasEc=0;
-                    $pesoNotaEC = $porcentages->continuous_assessment;
+                    $pesoNotaEC = $ca;
                     $works = Illuminate\Support\Facades\DB::table('works')->where('id_class', '=', $clase->id_class)->where('id_student', '=', $id_studnet)->get();
                     foreach ($works as $work) {
                     $sumaNotaEc += $work->mark;
@@ -55,12 +58,12 @@ rounded-lg shadow-lg">
                     if( $numeroDeNotasEc == 0){
                     $numeroDeNotasEc =1;
                     }
-                    $notaEc = (($sumaNotaEc /$numeroDeNotasEc) * $porcentages->continuous_assessment) / 100;
+                    $notaEc = (($sumaNotaEc /$numeroDeNotasEc) * $ca) / 100;
                     $notaEcMedia = number_format(($sumaNotaEc /$numeroDeNotasEc),2) ;
 
                     $sumaNotaExams = 0;
                     $numeroDeNotasExams=1;
-                    $pesoNotaExams = $porcentages->exams;
+                    $pesoNotaExams = $pa;
                     $exams = Illuminate\Support\Facades\DB::table('exams')->where('id_class', '=', $clase->id_class)->where('id_student', '=', $id_studnet)->get();
                     foreach ($exams as $exam) {
                     $sumaNotaExams += $exam->mark;
@@ -74,7 +77,7 @@ rounded-lg shadow-lg">
                     }
                     $notaExamsMedia =number_format(($sumaNotaExams /$numeroDeNotasExams),2) ;
 
-                    $notaExams =(($sumaNotaExams /$numeroDeNotasExams) * $porcentages->exams) / 100;
+                    $notaExams =(($sumaNotaExams /$numeroDeNotasExams) * $pa) / 100;
                     $notaFinal= number_format($notaEc + $notaExams,2) ;
 
 

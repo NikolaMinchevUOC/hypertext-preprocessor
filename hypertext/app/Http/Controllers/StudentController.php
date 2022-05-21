@@ -20,7 +20,7 @@ class StudentController extends Controller
     }
 
     public function getCalendar()
-    {   
+    {
         return view('dashboard.student.calendar');
     }
 
@@ -31,6 +31,11 @@ class StudentController extends Controller
         return view('dashboard.student.clases')->with('clases', $clases);
     }
 
+    public function studentEditNotificaciones()
+    {
+
+        return view('dashboard.student.notificaciones');
+    }
     public function studentShowWorks($id)
     {
         $id_studnet = Auth::id();
