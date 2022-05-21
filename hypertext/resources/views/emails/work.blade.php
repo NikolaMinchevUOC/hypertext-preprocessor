@@ -1,12 +1,8 @@
 @component('mail::message')
-# Introduction
+# Info Nota Trabajo
 
-The body of your message.
+La nota del trabajo "{{$work}}" de la clase {{$clase}} ha sido publicada. Tu nota es: {{$nota}}.
 
-@component('mail::button', ['url' => ''])
-Button Text
-@endcomponent
-
-Thanks,<br>
-{{ config('app.name') }}
+Gracias,<br>
+UOC
 @endcomponent

@@ -16,9 +16,9 @@ class ExamMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
     /**
@@ -28,6 +28,6 @@ class ExamMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.exam');
+        return $this->markdown('emails.exam')->with($this->data);
     }
 }

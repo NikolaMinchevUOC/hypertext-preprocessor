@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\WorkMail;
 use App\Models\Classes;
 use App\Models\Mensaje;
+use App\Models\User;
 use App\Models\Work;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class WorkController extends Controller
 {
@@ -38,6 +41,12 @@ class WorkController extends Controller
             'text' => 'El Trabajo "' . $request->get('name') . '" de la clase "' . $clase->name . '" ha sido creado',
         ]);
 
+        $user = User::where('id', $request->get('student'))->first();
+        $sendData["clase"] = $clase->name;
+        $sendData["work"] = $request->get('name');
+        $sendData["nota"] = $request->get('mark');
+        Mail::to($user->email)->send(new WorkMail($sendData));
+
         return redirect('/admin-works');
     }
 
@@ -64,6 +73,12 @@ class WorkController extends Controller
             'id_student' => $request->get('student'),
             'text' => 'El Trabajo "' . $request->get('name') . '" de la clase "' . $clase->name . '" ha sido actualizado ',
         ]);
+
+        $user = User::where('id', $request->get('student'))->first();
+        $sendData["clase"] = $clase->name;
+        $sendData["work"] = $request->get('name');
+        $sendData["nota"] = $request->get('mark');
+        Mail::to($user->email)->send(new WorkMail($sendData));
 
         return redirect('/admin-works');
     }

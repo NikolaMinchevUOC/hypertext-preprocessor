@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\WorkMail;
 use App\Models\Classes;
 use App\Models\Mensaje;
+use App\Models\User;
 use App\Models\Work;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 
 class ProfesorWorkController extends Controller
@@ -39,6 +42,12 @@ class ProfesorWorkController extends Controller
             'text' => 'El Trabajo "' . $request->get('name') . '" de la clase "' . $clase->name . '" ha sido creado',
         ]);
 
+        $user = User::where('id', $request->get('student'))->first();
+        $sendData["clase"] = $clase->name;
+        $sendData["work"] = $request->get('name');
+        $sendData["nota"] = $request->get('mark');
+        Mail::to($user->email)->send(new WorkMail($sendData));
+
         echo '<script type="text/javascript">window.location.reload(history.go(-2));</script>';
     }
 
@@ -64,6 +73,12 @@ class ProfesorWorkController extends Controller
             'id_student' => $request->get('student'),
             'text' => 'El Trabajo "' . $request->get('name') . '" de la clase "' . $clase->name . '" ha sido actualizado ',
         ]);
+
+        $user = User::where('id', $request->get('student'))->first();
+        $sendData["clase"] = $clase->name;
+        $sendData["work"] = $request->get('name');
+        $sendData["nota"] = $request->get('mark');
+        Mail::to($user->email)->send(new WorkMail($sendData));
 
         echo '<script type="text/javascript">window.location.reload(history.go(-2));</script>';
     }

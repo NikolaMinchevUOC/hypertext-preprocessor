@@ -1,11 +1,7 @@
 @component('mail::message')
-# Actualización Exámen
+# Info Nota Exámen
 
-La nota de un exámen ha sido publicado
-
-@component('mail::button', ['url' => ''])
-Button Text
-@endcomponent
+La nota del exámen"{{$exam}}" de la clase {{$clase}} ha sido publicada. Tu nota es: {{$nota}}.
 
 Gracias,<br>
 UOC

@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ExamMail;
 use App\Models\Classes;
 use App\Models\Exam;
 use App\Models\Mensaje;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ProfesorExamController extends Controller
 {
@@ -39,6 +42,12 @@ class ProfesorExamController extends Controller
             'text' => 'El Exam "' . $request->get('name') . '" de la clase "' . $clase->name . '" ha sido creado ',
         ]);
 
+        $user = User::where('id', $request->get('student'))->first();
+        $sendData["clase"] = $clase->name;
+        $sendData["exam"] = $request->get('name');
+        $sendData["nota"] = $request->get('mark');
+        Mail::to($user->email)->send(new ExamMail($sendData));
+
         echo '<script type="text/javascript">window.location.reload(history.go(-2));</script>';
     }
 
@@ -65,6 +74,12 @@ class ProfesorExamController extends Controller
             'text' => 'El Exam "' . $request->get('name') . '" de la clase "' . $clase->name . '" ha sido actualizado ',
         ]);
 
+        $user = User::where('id', $request->get('student'))->first();
+        $sendData["clase"] = $clase->name;
+        $sendData["exam"] = $request->get('name');
+        $sendData["nota"] = $request->get('mark');
+        Mail::to($user->email)->send(new ExamMail($sendData));
+
         echo '<script type="text/javascript">window.location.reload(history.go(-2));</script>';
     }
 
@@ -78,4 +93,3 @@ class ProfesorExamController extends Controller
         return redirect()->back();
     }
 }
-
