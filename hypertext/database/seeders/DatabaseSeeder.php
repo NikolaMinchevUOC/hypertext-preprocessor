@@ -69,22 +69,30 @@ class DatabaseSeeder extends Seeder
         $course = new Course;
         $course->name = 'Curso de PHP';
         $course->description = 'En este curso de PHP aprenderás a manejar este lenguaje de programación junto a otros frameworks como Laravel';
-        $course->date_start = '2022-04-24';
-        $course->date_end = '2022-05-24';
+        $course->date_start = '2022-05-10';
+        $course->date_end = '2022-06-24';
         $course->active = 1;
         $course->save();
+
+        $course1 = new Course;
+        $course1->name = 'Curso de Java';
+        $course1->description = 'En este curso de Java aprenderás a manejar este lenguaje de programación junto a otros frameworks como Spring';
+        $course1->date_start = '2022-05-20';
+        $course1->date_end = '2022-06-24';
+        $course1->active = 1;
+        $course1->save();
 
 
         $schedule = new Schedule();
         $schedule->time_start = '12:30:00';
         $schedule->time_end = '13:30:00';
-        $schedule->day = '2022-04-24';
+        $schedule->day = '2022-05-21';
         $schedule->save();
 
         $schedule2 = new Schedule();
         $schedule2->time_start = '13:30:00';
         $schedule2->time_end = '14:30:00';
-        $schedule2->day = '2022-04-25';
+        $schedule2->day = '2022-05-20';
         $schedule2->save();
 
 
@@ -108,10 +116,26 @@ class DatabaseSeeder extends Seeder
         $class2->color = "#ff0000";
         $class2->save();
 
+
+
+        $class3 = new Classes;
+        $class3->id_teacher = 4;
+        $class3->id_course = 2;
+        $class3->id_schedule = 1;
+        $class3->name = 'Intro to Java';
+        $class3->color = "#00ff04";
+        $class3->save();
+
         $enrolment = new Enrollment;
         $enrolment->id_student = 2;
         $enrolment->id_course = 1;
         $enrolment->status = 1;
+        $enrolment->save();
+
+        $enrolment = new Enrollment;
+        $enrolment->id_student = 2;
+        $enrolment->id_course = 2;
+        $enrolment->status = 0;
         $enrolment->save();
 
         $work = new Work;
@@ -120,6 +144,13 @@ class DatabaseSeeder extends Seeder
         $work->name = "Primera entrega PHP";
         $work->mark = 9.6;
         $work->save();
+
+        $work7 = new Work;
+        $work7->id_class = 3;
+        $work7->id_student = 2;
+        $work7->name = "Primera entrega Java";
+        $work7->mark = 9.6;
+        $work7->save();
 
 
         $work3 = new Work;
@@ -150,6 +181,13 @@ class DatabaseSeeder extends Seeder
         $exam->mark = 9.6;
         $exam->save();
 
+        $exam6 = new Exam;
+        $exam6->id_class = 3;
+        $exam6->id_student = 2;
+        $exam6->name = "Final exam Java";
+        $exam6->mark = 9.6;
+        $exam6->save();
+
         $percentage = new Percentage;
         $percentage->id_course = 1;
         $percentage->id_class = 1;
@@ -163,6 +201,13 @@ class DatabaseSeeder extends Seeder
         $percentage1->continuous_assessment = 80;
         $percentage1->exams = 20;
         $percentage1->save();
+
+        $percentage = new Percentage;
+        $percentage->id_course = 2;
+        $percentage->id_class = 3;
+        $percentage->continuous_assessment = 80;
+        $percentage->exams = 20;
+        $percentage->save();
 
 
         $notification = new Notification;
