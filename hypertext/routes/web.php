@@ -16,6 +16,8 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfesorWorkController;
 use App\Http\Controllers\ProfesorExamController;
+use App\Mail\ExamMail;
+use Illuminate\Support\Facades\Mail;
 
 Route::get('/', function () {
     return view('home');
@@ -435,3 +437,11 @@ Route::get('/profesor-exam/edit/{id}', [ProfesorExamController::class, 'editExam
 Route::post('/profesor-exam/update/{id}', [ProfesorExamController::class, 'updateExam1'])
     ->middleware('auth.profesor')
     ->name('profesorExam.updateExam1');
+
+
+// Email 
+
+Route::get('/email', function(){
+    Mail::to('iperezpere@uoc.edu')->send(new ExamMail);
+    return new ExamMail();
+});
