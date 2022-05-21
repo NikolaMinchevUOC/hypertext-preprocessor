@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Notification;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class NotificationController extends Controller
 {
@@ -13,6 +15,16 @@ class NotificationController extends Controller
         $notifications = Notification::all();
         return view('dashboard.admin.notification.index')->with('notifications', $notifications);
     }
+
+
+    // Notificación para Student
+    public function getNotificationStudent()
+    {
+        $user = Auth::user();
+        $notification = Notification::where('id_notification', $user->id)->first();
+        return view('dashboard.student.notification.edit')->with('notification', $notification);
+    }
+
 
     public function createNotification()
     {
@@ -126,6 +138,48 @@ class NotificationController extends Controller
 
         return redirect('/admin-notification');
     }
+
+    // Update Notification para Student
+    public function updateNotificationStudent(Request $request)
+    {
+
+        $user = Auth::user();
+        $notification = Notification::where('id_notification', $user->id)->first();
+        if (!$notification){
+            $notification = new Notification();
+        }
+        $notification->id_student = $user->id;
+
+        if ($request->exam === "on") {
+            $notification->exam = 1;
+        } else {
+            $notification->exam = 0;
+        }
+
+        if ($request->work === "on") {
+            $notification->work = 1;
+        } else {
+            $notification->work = 0;
+        }
+
+        if ($request->continuous_assessment === "on") {
+            $notification->continuous_assessment = 1;
+        } else {
+            $notification->continuous_assessment = 0;
+        }
+
+        if ($request->final_note === "on") {
+            $notification->final_note = 1;
+        } else {
+            $notification->final_note = 0;
+        }
+
+        $notification->save();
+
+
+        return redirect('/student-notification');
+    }
+
 
 
 

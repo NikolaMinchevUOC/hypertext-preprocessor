@@ -19,6 +19,12 @@ class StudentController extends Controller
         return view('auth.student');
     }
 
+    public function getCalendar()
+    {   
+        return view('dashboard.student.calendar');
+    }
+
+
     public function studentShowClases($id)
     {
         $clases = Classes::where('id_course', $id)->get();

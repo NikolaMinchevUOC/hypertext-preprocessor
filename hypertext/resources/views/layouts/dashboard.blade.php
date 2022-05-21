@@ -151,6 +151,12 @@
                                             </a>
                                         </li>
                                         <li class="nav-item">
+                                            <a class="nav-link" href="/student-calendar">
+                                                <span data-feather="file"></span>
+                                                Calendario
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
                                             <a class="nav-link" href="/student-enrolments">
                                                 <span data-feather="file"></span>
                                                 Enrollments
