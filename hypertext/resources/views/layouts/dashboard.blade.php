@@ -170,7 +170,7 @@
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">
+                                            <a class="nav-link" href="/student-notification">
                                                 <span data-feather="shopping-cart"></span>
                                                 Notificaciones
                                             </a>
@@ -202,8 +202,7 @@
                                     <h1 class="h2">@yield('h1')</h1>
                                     <div class="btn-toolbar mb-2 mb-md-0">
                                         <div class="btn-group mr-2">
-                                            <button class="btn btn-sm btn-outline-secondary">Botón</button>
-                                            <button class="btn btn-sm btn-outline-secondary">Botón Secundario</button>
+
                                         </div>
                                     </div>
                                 </div>

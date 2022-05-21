@@ -21,7 +21,7 @@ class NotificationController extends Controller
     public function getNotificationStudent()
     {
         $user = Auth::user();
-        $notification = Notification::where('id_notification', $user->id)->first();
+        $notification = Notification::where('id_student', $user->id)->first();
         return view('dashboard.student.notification.edit')->with('notification', $notification);
     }
 
@@ -144,8 +144,8 @@ class NotificationController extends Controller
     {
 
         $user = Auth::user();
-        $notification = Notification::where('id_notification', $user->id)->first();
-        if (!$notification){
+        $notification = Notification::where('id_student', $user->id)->first();
+        if (!$notification) {
             $notification = new Notification();
         }
         $notification->id_student = $user->id;

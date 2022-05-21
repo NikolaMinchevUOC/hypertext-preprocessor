@@ -57,6 +57,7 @@ rounded-lg shadow-lg">
                     @endforeach
                 </tbody>
             </table>
+            <button onclick="history.go(-1);" class="btn btn-info">Back </button>
         </div>
     </div>
 </div>
